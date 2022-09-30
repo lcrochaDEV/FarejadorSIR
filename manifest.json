@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+
+  "name": "Farejador SIR",
+  "description": "App para verificar de circuitos críticos",
+  "author": "Lucas Rocha",
+  "version": "22.9.15",
+  "permissions": ["activeTab", "scripting", "alarms", "notifications", "storage"],
+  "icons": {
+	  "128":"./imagen/128x128.png"
+	},
+
+  "action": {
+	"default_title": "App Farejador SIR",
+    "default_icon": "./imagen/128x128.png"
+    //"default_popup": "./popup.html"
+  },
+  
+	"background": {
+		//"service_worker": "./js/background.js",
+		"type": "module" //optional
+	},
+
+    "content_scripts": [
+		{
+	"matches": [
+				"http://*/navegacao/framesetNivel1Aplicacao.cfm*/*",				
+				"http://10.13.54.150:20020/navegacao/framesetNivel1Aplicacao.cfm*",				
+				"http://sir.nt.embratel.com.br/navegacao/framesetNivel1Aplicacao.cfm*",
+				"http://192.168.1.254:80/"
+				],
+	"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
+	
+		"css": ["./menu.css"],
+		"js": [
+			"./js/conectdata.js",
+			"./js/buscarbandas.js",
+			"./js/importagsir.js",
+			"./js/permission.js",
+			"./js/menu.js",
+			"./js/colorsir.js",
+			"./js/formstorge.js",
+			"./js/marcatexto.js"
+		],
+		"html": ["./index.html"]
+	   }
+	],
+	
+	"host_permissions": [
+	"http://10.13.54.150:20020/navegacao/framesetNivel1Aplicacao.cfm",
+	"http://sir.nt.embratel.com.br/navegacao/framesetNivel1Aplicacao.cfm*",
+	"http://192.168.1.254:80/"
+	 ],
+	  "optional_host_permissions": [
+		"*://*/*"
+	  ]
+}
