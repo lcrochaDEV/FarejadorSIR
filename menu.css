@@ -1,6 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
+﻿/*RESET*/
+*{margin:0; padding:0;}
+
 #formTag {
 	font-family: Lato, sans-serif; 
 	color: #aaa; display: flex; 
@@ -10,6 +13,49 @@
 	top: 10px; 
 	right: 10px;
 }
+
+.navbar {display: none;}
+
+/*MENU DO FUNDO*/
+.menu-top {
+    overflow:hidden; 
+    margin:0; 
+    padding:0;  
+
+    
+    font:17px "Arial", Helvetica, sans-serif;
+
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #455575),
+        color-stop(1, #3B5898)
+    );
+    background-image: -o-linear-gradient(bottom, #455575 0%, #3B5898 100%);
+    background-image: -moz-linear-gradient(bottom, #455575 0%, #3B5898 100%);
+    background-image: -webkit-linear-gradient(bottom, #455575 0%, #3B5898 100%);
+    background-image: -ms-linear-gradient(bottom, #455575 0%, #3B5898 100%);
+    background-image: linear-gradient(to bottom, #455575 0%, #3B5898 100%);
+    }
+/***************************************************************/
+/*MENU DO TOPO*/
+.menu-top ul {display: flex; flex-direction: row; justify-content:baseline; list-style-type:none; background:linear-gradient(90deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.0) 100%); box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), inset 0 0 1px rgba(255, 255, 255, 0.5);}
+.menu-top ul li {display:inline-block;}
+.menu-top ul li a {padding:10px; text-decoration:none; display:block; color: rgba(255, 255, 255, 0.5); text-shadow:1px 1px 1px rgba(1, 1, 1, 0.4);}
+.menu-top ul li a:hover {box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(1, 1, 1, 0.6); color: rgba(1, 1, 1, 1.7);}
+.menu-top ul li ul {padding:0; margin:0; position:absolute; display:none;  background:linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 257, 0.5) 25%, rgba(255, 255, 257, 0.5) 75%, rgba(255, 255, 255, 0.2) 100%) #6A7DA6; box-shadow: 0 0 25px rgba(0, 0, 7, 0.5), inset 0 0 1px rgba(255, 255, 255, 0.5);}
+.menu-top ul li ul li {display:block;}
+.menu-top ul li:hover ul {display:block; opacity:1; visibility:visible;}
+.menu-top img {width: 120px;}
+/***************************************************************/
+/*SUB-MENU DO TOPO*/
+.menu-top ul ul ul > li {display:none; position:relative;}
+.menu-top ul ul li:hover li {display:block;}
+.menu-top ul ul li ul {left:116px;}
+.menu-top ul li ul li ul {margin-top:-40px;}
+.menu-top ul ul ul {width:370px}
+/***************************************************************/
 
 /*FORME QUE BUSCA CFs*/
 #campo-cfs, #campo-ccto {margin: 4px 2px; background-color:#ffffff; border-radius: 5px; padding: 10px; filter:opacity(90%);}

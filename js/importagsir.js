@@ -7,9 +7,9 @@ function btnFult(){
 		linkico.setAttribute("rel", "stylesheet");
 		linkico.setAttribute("href", caminho);
 		head.appendChild(linkico);
-	
-	//CRIA TAG DO FORMULARIO DE FILTRO
+
 	var corpo = document.querySelector("html");
+	//CRIA TAG DO FORMULARIO DE FILTRO
 	var div1 = document.createElement("div");
 		div1.setAttribute("id", "formTag");    
 		corpo.appendChild(div1);
@@ -30,5 +30,10 @@ function btnFult(){
 				a.textContent = arrTagDown[i];		
 				btn.appendChild(a);
 			})
+	//CRIA TAG HEADER
+	var div3 = document.createElement("div");
+		div3.setAttribute("data-menu-top", "");  
+		div3.setAttribute("class", "menu-top");  
+	corpo.appendChild(div3);
 }
 window.addEventListener("load", btnFult);

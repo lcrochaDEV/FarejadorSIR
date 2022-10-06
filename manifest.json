@@ -37,6 +37,7 @@
 			"./js/buscarbandas.js",
 			"./js/importagsir.js",
 			"./js/permission.js",
+			"./js/menu-top.js",
 			"./js/menu.js",
 			"./js/colorsir.js",
 			"./js/formstorge.js",
