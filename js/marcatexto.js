@@ -6,25 +6,33 @@ function marcaTexto(marcaParametro){
 		itensStorge.find(Object => {
 			cf.forEach(cf => {
 				if(cf.innerText === Object.valor){
-					cf.parentNode.style.background = '#00ff00';
+					cf.style.color = '#000';
+					cf.style.fontWeight = "bold"
+					cf.parentNode.style.background = '#00ff00';;
 				}
-			})
-					
+			})			
 		})
-		
 		//REC RAL E DESIGNAÇÃO
 		let txtTable = window[1][1][0][1].document.querySelectorAll(".listaTable  td");
 			desigStorge.find(Object => {
-				txtTable.forEach(txtTable => {
+				txtTable.forEach(txtTable  => {
 					if(txtTable.innerText === Object.valor){
-						txtTable.parentNode.style.background = '#9400d3';	
+						txtTable.parentNode.style.background = '#9400d3';
+						txtTable.parentElement.removeAttribute("onmouseover");
+						let corTr = txtTable.parentElement.querySelectorAll('* font');
+							corTr.forEach(corTr  => {
+								corTr.style.color = '#fff'
+								corTr.style.fontWeight = "bold";										
+						})
 					}
-
 				})
 			})
 	}
 };
 atualizar = setInterval(() => {marcaTexto();}, 2000);
-// .childNodes
-// .childElementCount
+
+
+//window[1][1][0][1].document.querySelectorAll(".listaTable td")[4].parentElement.removeAttribute("onmouseover");
+
+//window[1][1][0][1].document.querySelectorAll(".listaTable td")[4].parentElement.removeAttribute("onmouseout");
 

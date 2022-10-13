@@ -7,36 +7,22 @@ function buscar(data){
 		// listCKT[1] = "NULL",
 		// listCKT[2] = "NULL",
 		// listCKT[3] = "NULL",
-		
+		console.log(listCKT)
 //SELECIONA TD DE CADA CCTO EM SIR PAGINA ROSA
-listCKT.forEach(listCKT => {
-	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-	if(caminhoURL == urlAtual){
-		//SEARCH DE ELEMENTO DA PAGINA DO SIR
-		var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable")[0];
-		bodyrec.getElementsByTagName("a")[3].firstElementChild.color = '#fff'
-		var search = bodyrec.querySelectorAll(".listaTable tr td");
-			search.forEach(search => {
-				var result = search.innerText;
-					//BUSCA PALAVRAS
-					var saida = result.indexOf(listCKT);
-					if(saida == 0){
-						search.parentNode.style.background = "red";
-						search.parentNode.style.fontWeight = "bold";
-						search.querySelectorAll("font")[0].style.color = "#fff";
-						var corText = search.parentNode.querySelectorAll(".listaTable tr td .listaCelulaFont");
-							//window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseover");
-							//window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseout");
-							
-							corText.forEach(corText => {
-								corText.style.color = "#fff";
-								//console.log(corText);
-								});
-						console.log(`Circuito ${result} existe na lista!`);
-					}
-			});
+var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable td");
+	bodyrec.forEach(bodyrec => {
+		//BUSCA PALAVRAS
+		if(listCKT.find(listCKT => listCKT === bodyrec.innerText)){
+			bodyrec.parentNode.style.background = "red";
+			//CSS COLOR E BOLD FONT
+			let corTr = bodyrec.parentElement.querySelectorAll('* font');
+				corTr.forEach(corTr => {
+					corTr.style.color = "#fff";
+					corTr.style.fontWeight = "bold";	
+				});
+			console.log(`Circuito ${bodyrec.innerText} existe na lista!`);
 		}
-	});
+	})
 }
 //atualizar = setInterval(() => {buscar();}, 2000);
 //BANDAS DE AUTA HIERARQUIA 

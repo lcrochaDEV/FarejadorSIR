@@ -25,18 +25,35 @@ function normal_sidebar() {
 }
 window.addEventListener("load", normal_sidebar);
 
+//BUSCA EM BANCO DE DADOS
+const menuLateral = JSON.parse(localStorage.getItem("menuLateral")) || [];
+//CLASS
+class CadastroDados {
+	constructor (id, valor){
+		this.id = id;
+		this.valor = valor;
+	}
+	cadastrarBD(dados, cadastrar){	
+		localStorage.setItem(dados, JSON.stringify(cadastrar));
+	}
+}
 //ANIMAÇÃO EM MENUS
 function clickEvent (){
 	var visibility = document.getElementById("visibility");
 		visibility.addEventListener("click", function(event) {	
-			if(visibility.innerText == "visibility_off"){
+			let visibilityBtn = event.target.id;
+			const dados = new CadastroDados('1', visibilityBtn)
+			if(visibilityBtn !== visibility.innerText){
 				visibility.innerText = "visibility";
 				visibility.style.background = "#001ADE";
 				//ATIVA BUSCA POR CCTOS LISTADOS	
 				atualizarBanda = setInterval(() => {conectJson();}, 2000);	
-				//SALVE EM BD
-				save_dados("visibility", 1)
-			}else if(visibility.innerText == "visibility"){
+				//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
+				menuLateral.push(dados);
+				//CADASTRA ITEM NO LOCALSTORGE
+				dados.cadastrarBD("menuLateral", menuLateral)
+				console.log(dados)
+			}else if(visibilityBtn === visibility.innerText){
 				visibility.innerText = "visibility_off";
 				visibility.style.background = "";
 				//PARA ATUALIZAÇÃO DE BUSCA
@@ -44,10 +61,11 @@ function clickEvent (){
 				window.location.reload()
 				//refresh();
 				//DELETE EM BD
-				deleta_banco("visibility");
-			}		
-	});
-	var update_disabledBD = localStorage.getItem("update_disabled");
+				menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'visibility'),1);
+				localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
+			}
+		});
+	//TEMPORIZADOR
 	var update_disabled = document.getElementById("update_disabled");
 	var contagem = 0;
 		update_disabled.addEventListener("click", function(event) {
@@ -61,38 +79,53 @@ function clickEvent (){
 				return contagem = 0;
 			}			
 	});
+	//MODO ESCURO
 	var dark_mode = document.getElementById("dark_mode");
-		dark_mode.addEventListener("click", function(event) {
-			if(dark_mode.innerText == "sunny"){
-				dark_mode.innerText = "dark_mode";
-				dark_mode.style.background = "#001ADE";
-				//noturno(); //ACIONADO
-				noturnoInicio(); //ACIONADO
-				exibir();  //ACIONADO
-				//SALVE EM BD
-				return save_dados("dark_mode", 1);
-			}else if(dark_mode.innerText == "dark_mode"){
-				dark_mode.innerText = "sunny";
-				dark_mode.style.background = "";	
-				window[0].location.reload();
-				window[1].location.reload();
-				return deleta_banco("dark_mode");
-			}
-	});
+	dark_mode.addEventListener("click", function(event) {
+		let dark_modeBtn = event.target.id;
+		const dados = new CadastroDados('3', dark_modeBtn)
+		if(dark_modeBtn !== dark_mode.innerText){
+			dark_mode.innerText = "dark_mode";
+			dark_mode.style.background = "#001ADE";
+			//noturno(); //ACIONADO
+			noturnoInicio(); //ACIONADO
+			exibir();  //ACIONADO
+			//SALVE EM BD
+			//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
+			menuLateral.push(dados);
+			//CADASTRA ITEM NO LOCALSTORGE
+			dados.cadastrarBD("menuLateral", menuLateral)
+		}else if(dark_modeBtn === dark_mode.innerText){
+			dark_mode.innerText = "sunny";
+			dark_mode.style.background = "";	
+			window[0].location.reload();
+			window[1].location.reload();
+			menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'dark_mode'),1);
+			localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
+		}
+	})
+	//FORME
 	var code = document.getElementById("code");
 	var forme = document.getElementById("formTag"); 
 	code.addEventListener("click", function(event) {
-			if(code.innerText == "code"){
+		let formeBtn = event.target.id;
+		const dados = new CadastroDados('3', formeBtn)
+			if(formeBtn === code.innerText){
 				code.innerText = "code_off";
 				code.style.background = "#001ADE";
 				forme.style.display = 'none';
 				//SALVE EM BD
-				return save_dados("code", 1);
-			}else if(code.innerText == "code_off"){
+				//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
+				menuLateral.push(dados);
+				//CADASTRA ITEM NO LOCALSTORGE
+				dados.cadastrarBD("menuLateral", menuLateral)
+				console.log(dados)
+			}else if(formeBtn  !== code.innerText){
 				code.innerText = "code";
 				code.style.background = "";
 				forme.style.display = 'flex';
-				return deleta_banco("code");
+				menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'code'),1);
+				localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
 			}
 	});
 }

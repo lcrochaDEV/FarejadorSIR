@@ -7,17 +7,18 @@ function btnFult(){
 		linkico.setAttribute("rel", "stylesheet");
 		linkico.setAttribute("href", caminho);
 		head.appendChild(linkico);
-
-	var corpo = document.querySelector("html");
+	
+	//var corpo = document.querySelector("body");
+	var html = document.querySelector("html");
 	//CRIA TAG DO FORMULARIO DE FILTRO
 	var div1 = document.createElement("div");
 		div1.setAttribute("id", "formTag");    
-		corpo.appendChild(div1);
+		html.appendChild(div1);
 
 	//CRIA TAG DO MENU LATERAL
 	var div2 = document.createElement("div");
 		div2.setAttribute("id", "btns");    
-		corpo.appendChild(div2);
+		html.appendChild(div2);
 
 	var arrTagaUP = ['visibility', 'update_disabled', 'dark_mode', 'code'];
 	var arrTagDown = ['visibility_off', 'update_disabled', 'sunny', 'code'];
@@ -34,6 +35,6 @@ function btnFult(){
 	var div3 = document.createElement("div");
 		div3.setAttribute("data-menu-top", "");  
 		div3.setAttribute("class", "menu-top");  
-	corpo.appendChild(div3);
+		html.appendChild(div3);
 }
 window.addEventListener("load", btnFult);

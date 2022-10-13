@@ -1,21 +1,21 @@
 //CRIA TAG FORMULARIO
 function inputAreaCFs(passCfs){
 	const criandoElementsHtml = document.getElementById('formTag').innerHTML += `
-	<div id="campo-cfs">
-		<form id="forme1" action="" method="post">
+	<div id="campo-cfs" data-campo-cfs>
+		<form class="forme1" action="" method="post">
 			<input type="text" class="area" name="area" placeholder="&nbsp;" required name=nome />
 			<label class="input-group__label" for="cfs">CFs</label>
 			<button type="submit" class="sub-area" />Enviar</button>
+			<div data-dataCfs></div>
 		</form>
-		<div data-dataCfs></div>
 	</div>
 	<div id="campo-ccto">
-		<form id="forme2" action="" method="post">
+		<form class="forme2" action="" method="post">
 			<input type="text" class="ccto" name="ccto" placeholder="&nbsp;" required name=nome />
 			<label class="input-group__label" for="cctos">CCTOs</label>
-			<button type="submit" id="sub-ccto" />Enviar</button>
+			<button type="submit" id="sub-ccto" />Enviar</button>	
+			<div data-dataCctos></div>
 		</form>
-		<div data-dataCctos></div>
 	</div>		
 	`;
 }
@@ -95,8 +95,8 @@ function deleta(){
 window.addEventListener("load", deleta);
 
 /*=======================================================================================================================*/
-let bancos = ["designacao"];
-const desigStorge = JSON.parse(localStorage.getItem(bancos)) || [];
+
+const desigStorge = JSON.parse(localStorage.getItem("designacao")) || [];
 
 //CLASS
 class CadastroDados {
@@ -117,18 +117,30 @@ function designacao(){
 		//TRANSFORMANDO EM OBJETOS
 		if(ccto.value === ""){
 			console.log(`Cadastre um item!`);
-		}else if(ccto.value != ""){
+		}else if(ccto.value != "" ){
+			//CADASTRO DE ID
 			
-			const dados = new CadastroDados('', ccto.value)
+			//let id = desigStorge.findIndex(id => id.id === desigStorge.length.toString())+1;
+			//console.log(id.id)
+			let id = desigStorge.findIndex(id => {
+				if(id.id === desigStorge.length -1)
+					return desigStorge.length;
+
+			}) +1;
+			
+
+			//CRIA OBEJTO EM CLASS
+			const dados = new CadastroDados(id, ccto.value)
 			//CERIFICA CAFASTRO REPETIDOS
 			var lista = desigStorge.filter((cfs) => {
 				return (cfs.valor === ccto.value)
 			})
+						
 			if(lista.length === 0){
 				//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
 				desigStorge.push(dados);
 				//PASSAR DADOS CADASTRADOS
-				recuperadados(dados);
+				buscaDadosBD(dados);
 				//CADASTRA ITEM NO LOCALSTORGE
 				dados.cadastrarBD("designacao", desigStorge)
 				console.log(`Cadastrado com sucesso!`);
@@ -145,7 +157,7 @@ window.addEventListener("load", designacao);
 
 //BUSCA DADOS E EXIBE NA TABELA
 function recuperadados(){	
-	desigStorge.forEach(itens => { 
+	desigStorge.forEach(itens => {
 		buscaDadosBD(itens)
 	})
 }
