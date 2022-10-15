@@ -153,9 +153,51 @@ function deleta_banco(chaveId){
 	localStorage.removeItem(chaveId)
 	console.log(`Dados foram deletados em Banco de Dados`);
 }
+
+
 //BUSCA DADOS EM BD
+
 function update_dados(){
-	var visibilityBD = localStorage.getItem("visibility");
+
+	var visibility = document.getElementById("visibility");
+	var update_disabled = document.getElementById("update_disabled");
+	var dark_mode = document.getElementById("dark_mode");
+	var code = document.getElementById("code");
+	var forme = document.getElementById("formTag"); 
+
+	if(menuLateral.find(itens => itens.valor === visibility.id)){
+		console.log(`Item encontrado em Banco de Dados`);
+		visibility.innerText = "visibility";
+		visibility.style.background = "#001ADE";
+		//ATIVA BUSCA POR CCTOS LISTADOS
+		atualizarBusca = setInterval(() => {conectJson();}, 2000);
+	}
+	if(menuLateral.find(itens => itens.valor === dark_mode.id)){
+		console.log(`Item encontrado em Banco de Dados`);
+		dark_mode.innerText = "dark_mode";
+		dark_mode.style.background = "#001ADE";
+
+			noturno();
+			exibir();
+	}
+	if(menuLateral.find(itens => itens.valor === code.id)){
+		console.log(`Item encontrado em Banco de Dados`);
+		code.innerText = "code_off";
+		code.style.background = "#001ADE";
+		forme.style.display = "none";
+	}
+}
+window.addEventListener('load', update_dados);
+//menuLateral.findIndex(itens => itens.valor === 'visibility')
+
+	
+
+
+
+
+//function update_dados(){
+
+/*	var visibilityBD = localStorage.getItem("visibility");
 	var update_disabledBD = localStorage.getItem("update_disabled");
 	var dark_modeBD = localStorage.getItem("dark_mode");
 	var codeBD = localStorage.getItem("code");
@@ -167,7 +209,7 @@ function update_dados(){
 	var forme = document.getElementById("formTag"); 
 	
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		if(visibilityBD == true){
 			console.log(`Item encontrado em Banco de Dados`);
 			visibility.innerText = "visibility";
@@ -193,7 +235,7 @@ function update_dados(){
 			code.style.background = "#001ADE";
 			forme.style.display = "none";
 		}	
-	}else{
+/*	}else{
 		visibility.style.pointerEvents = 'none';
 		visibility.style.background = "#3D3D3D";
 		update_disabled.style.pointerEvents = 'none';
@@ -203,9 +245,9 @@ function update_dados(){
 		code.innerText = "code_off";
 		code.style.background = "#001ADE";
 		forme.style.display = "none";
-	}
-}
-window.addEventListener("load", update_dados);
+	}*/
+//}
+//window.addEventListener("load", update_dados);
 
 //FUNÇÃO SWITCH ESCOLHA TIME
 function switchC(n){
@@ -270,6 +312,4 @@ function switchC(n){
 	window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseover");
 	window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseout");
 	*/
-
-
 

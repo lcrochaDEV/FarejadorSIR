@@ -4,16 +4,7 @@
 ﻿/*RESET*/
 *{margin:0; padding:0;}
 
-#formTag {
-	font-family: Lato, sans-serif; 
-	color: #aaa; display: flex; 
-	flex-direction: row; 
-	justify-content:right; 
-	position:absolute; 
-	top: 10px; 
-	right: 10px;
-}
-
+body{ background-color: #000B17;}
 .navbar {display: none;}
 
 /*MENU DO FUNDO*/
@@ -21,10 +12,11 @@
     overflow:hidden; 
     margin:0; 
     padding:0;  
-
+   /* position:absolute;*/
+	top: 1px;
+	width: 100%;
     
     font:17px "Arial", Helvetica, sans-serif;
-
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -47,23 +39,33 @@
 .menu-top ul li ul {padding:0; margin:0; position:absolute; display:none;  background:linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 257, 0.5) 25%, rgba(255, 255, 257, 0.5) 75%, rgba(255, 255, 255, 0.2) 100%) #6A7DA6; box-shadow: 0 0 25px rgba(0, 0, 7, 0.5), inset 0 0 1px rgba(255, 255, 255, 0.5);}
 .menu-top ul li ul li {display:block;}
 .menu-top ul li:hover ul {display:block; opacity:1; visibility:visible;}
-.menu-top img {width: 120px;}
+.menu-top img {width: 120px; position:relative; left: 32%;}
 /***************************************************************/
 /*SUB-MENU DO TOPO*/
-.menu-top ul ul ul > li {display:none; position:relative;}
+.menu-top ul ul ul > li {display:none; }
 .menu-top ul ul li:hover li {display:block;}
 .menu-top ul ul li ul {left:116px;}
 .menu-top ul li ul li ul {margin-top:-40px;}
 .menu-top ul ul ul {width:370px}
 /***************************************************************/
+/*TAG FORMULARIO*/
+#formTag {
+	font-family: Lato, sans-serif; 
+	color: #aaa; 
+    display: flex; 
+	flex-direction: row; 
+	justify-content:right; 
+	position:absolute; 
+	top: 80px; 
+	right: 10px;
+}
 
 /*FORME QUE BUSCA CFs*/
-#campo-cfs, #campo-ccto {margin: 4px 2px; background-color:#ffffff; border-radius: 5px; padding: 10px; filter:opacity(90%);}
-#campo-cfs p {margin: 5px;}
+#campo-cfs, #campo-ccto {margin: 4px 1px;}
+#campo-cfs form, #campo-ccto form {background-color:#ffffff; border-radius: 5px; padding: 10px; filter:opacity(90%); margin: 3px; position: relative;}
+#campo-cfs p, #campo-ccto p {margin: 4px 1px;}
 .storge {display: flex; flex-direction: row; justify-content:space-between; margin: 5px;  border-bottom: 1px solid #EEE;}
 .storge a {text-decoration:none; color: #aaa;}
-#campo-ccto {margin: 4px 2px;}
-form {margin: 5px; position: relative;}
 
 input {
     height: 25px;
@@ -72,6 +74,8 @@ input {
     padding: 0 10px;
     transition-duration: 0.5s;
     color: #333333;
+    margin-top: 10px;
+    
 }
 input:focus{outline: none; border: 1px solid #0086e4;}
 
@@ -93,7 +97,7 @@ button:active {transform: scale(0.95);}
 .input-group__label {
     position: absolute;
     display: block;
-    top: 0;
+    top: 20px;
     color: #aaa;
     background-color: #fff;
     line-height: 1px;
@@ -109,7 +113,7 @@ input:not(:placeholder-shown) + .input-group__label{
     line-height: 10px;
     opacity: 1;
     font-size: 10px;
-    top: -5px;
+    top: 7px;
     color:  #18a0ff;
 }
 input:focus + .input-group__label{               
@@ -117,15 +121,14 @@ input:focus + .input-group__label{
     line-height: 10px;
     opacity: 1;
     font-size: 10px;
-    top: -5px;
+    top: 7px;
     color:  #18a0ff;
 }
 /****************************************************************/
 
-#btns {position:absolute;  float:right;}
 /*LINK TEMPO*/
 /*BTNS*/
-#btns {background-color:#EEE; color:black; position:fixed; top:40%; right:-50px; z-index:1; margin:10px; transition-duration: 1s;}
+#btns {float:right; background-color:#EEE; color:black; position:fixed; top:40%; right:-50px; z-index: 3; margin:10px; transition-duration: 1s;}
 #btns a {display:block; padding:12px; text-decoration:none; transition-duration:1s; filter:opacity(30%);}
 #btns a:hover {background-color:#000B17; color:red; display:block; padding:12px; text-decoration:none; filter:opacity(50%);}
 #btns .material-icons {color:#000B17; filter:opacity(70%);}

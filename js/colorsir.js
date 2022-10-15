@@ -36,6 +36,10 @@ function noturnoInicio(){
             fonte.style.color = "#E8E8E8";
             fonte.style.transition = "0.9s";
         });
+		
+		//MUDANDO ICONE DO SIR
+		window[1][0].document.querySelector('.formularioLabelFont img').src = 'https://cdn-icons-png.flaticon.com/512/876/876054.png';
+		window[1][0].document.querySelector('.formularioLabelFont img').style.width = '20px' 
 };
 window.addEventListener("DOMContentLoaded", noturnoInicio);
         

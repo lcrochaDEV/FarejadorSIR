@@ -21,6 +21,20 @@ function inputAreaCFs(passCfs){
 }
 window.addEventListener("load", inputAreaCFs);
 
+//CLASS
+class CadastroDadosForms {
+	constructor (id, valor){
+		this.id = id;
+		this.valor = valor;
+	}
+	cctoMarcfs(dados, cadastrar){	
+		localStorage.setItem(dados, JSON.stringify(cadastrar));
+	}
+	cadastrarBD(dados, cadastrar){	
+		localStorage.setItem(dados, JSON.stringify(cadastrar));
+	}
+}
+
 //Modo para cadastrar elemento em localstorge
 //NOVO LOCALSTORGE
 const itensStorge = JSON.parse(localStorage.getItem("marcaTxt")) || [];
@@ -29,31 +43,40 @@ function cfs(){
 	let formesInp = document.querySelector('#campo-cfs');
 		formesInp.addEventListener("submit", (event) => {
 			event.preventDefault(); //Inpede atualizar após evento Click(GET/POST).
-			let nome = event.target.elements['area'];
+			let area = event.target.elements['area'];
 			//TRANSFORMANDO EM OBJETOS
-			if(nome.value === ""){
+			if(area.value === ""){
 				console.log(`Cadastre um item!`);
-			}else if(nome.value != ""){
+			}else if(area.value != ""){
+			//CADASTRO DE ID
 
-				let arrStorge = {
-					"id": '',
-					"valor": nome.value,
-				}
-				var lista = itensStorge.filter((cfs) => {
-					return (cfs.valor === nome.value)
-				}) 
+			//let id = desigStorge.findIndex(id => id.id === desigStorge.length.toString())+1;
+			//console.log(id.id)
+			let id = desigStorge.findIndex(id => {
+				if(id.id === desigStorge.length -1)
+					return desigStorge.length;
+
+			}) +1;
+			
+			//CRIA OBEJTO EM CLASS
+			const cfs = new CadastroDadosForms(id, area.value)
+			//CERIFICA CAFASTRO REPETIDOS
+			var lista = itensStorge.filter((cfs) => {
+				return (cfs.valor === area.value)
+			})
+
 				if(lista.length === 0){
 					//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
-					itensStorge.push(arrStorge);
+					itensStorge.push(cfs);
 					//PASSAR DADOS CADASTRADOS
-					printCadastro(arrStorge);
+					printCadastro(cfs);
 					//CADASTRA ITEM NO LOCALSTORGE
-					localStorage.setItem("marcaTxt", JSON.stringify(itensStorge));
+					cfs.cctoMarcfs("marcaTxt", itensStorge)
 					console.log(`Cadastrado com sucesso!`);
 				}else{
 					console.log(`Existe cadastro!`);
 				}
-				nome.value = "";
+				area.value = "";
 				//BUCA DADOS EM EXIBE NA TABELA
 			}
 		});
@@ -72,8 +95,8 @@ window.addEventListener("load", recuperaLocalstorge);
 function printCadastro(itens){
 	let divstorge = document.querySelector('[data-dataCfs]');
 		divstorge.innerHTML += `
-			<div class="storge">
-				<p data-datatxt>${itens.valor}</p>
+			<div data-dataArea class="storge">
+				<p data-datacfstxt>${itens.valor}</p>
 				<button type="submit" data-delete class="material-symbols-outlined" />delete</button>
 			</div>
 		`;
@@ -82,8 +105,8 @@ function printCadastro(itens){
 //<a href="#" data-delete class="material-symbols-outlined" />delete</a>
 //DELETA ELEMENTO DE LOCALSTORG
 function deleta(){
-	let apagar = document.querySelectorAll('.storge');
-	let datatxt = document.querySelectorAll('[data-datatxt]');
+	let apagar = document.querySelectorAll('[data-dataArea]');
+	let datatxt = document.querySelectorAll('[data-datacfstxt]');
 	apagar.forEach((apagar, i) => {
 		apagar.addEventListener("click", (event) => {
 			itensStorge.splice(itensStorge.findIndex(itens => itens.valor === datatxt[i].innerText),1);
@@ -98,16 +121,6 @@ window.addEventListener("load", deleta);
 
 const desigStorge = JSON.parse(localStorage.getItem("designacao")) || [];
 
-//CLASS
-class CadastroDados {
-	constructor (id, valor){
-		this.id = id;
-		this.valor = valor;
-	}
-	cadastrarBD(dados, cadastrar){	
-		localStorage.setItem(dados, JSON.stringify(cadastrar));
-	}
-}
 //CADASTRO EM BANCO DE DADOS
 function designacao(){
 	let campoccto = document.querySelector('#campo-ccto');
@@ -128,9 +141,8 @@ function designacao(){
 
 			}) +1;
 			
-
 			//CRIA OBEJTO EM CLASS
-			const dados = new CadastroDados(id, ccto.value)
+			const dados = new CadastroDadosForms(id, ccto.value)
 			//CERIFICA CAFASTRO REPETIDOS
 			var lista = desigStorge.filter((cfs) => {
 				return (cfs.valor === ccto.value)
@@ -167,7 +179,7 @@ window.addEventListener("load", recuperadados);
 function buscaDadosBD(itens){
 	let divstorge = document.querySelector('[data-dataCctos]');
 		divstorge.innerHTML += `
-			<div class="storge">
+			<div data-dataccto class="storge">
 				<p data-datatxt>${itens.valor}</p>
 				<button type="submit" data-delete class="material-symbols-outlined" />delete</button>
 			</div>
@@ -175,7 +187,7 @@ function buscaDadosBD(itens){
 }
 //DELETAR DADOS DO LOCALSTORGE
 function deletaDados(){
-	let apagar = document.querySelectorAll('.storge');
+	let apagar = document.querySelectorAll('[data-dataccto]');
 	let datatxt = document.querySelectorAll('[data-datatxt]');
 		apagar.forEach((apagardados, i) => {
 			apagardados.addEventListener("click", (event) => {

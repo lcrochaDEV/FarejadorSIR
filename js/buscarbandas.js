@@ -7,7 +7,7 @@ function buscar(data){
 		// listCKT[1] = "NULL",
 		// listCKT[2] = "NULL",
 		// listCKT[3] = "NULL",
-		console.log(listCKT)
+
 //SELECIONA TD DE CADA CCTO EM SIR PAGINA ROSA
 var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable td");
 	bodyrec.forEach(bodyrec => {

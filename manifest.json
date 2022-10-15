@@ -41,7 +41,8 @@
 			"./js/menu.js",
 			"./js/colorsir.js",
 			"./js/formstorge.js",
-			"./js/marcatexto.js"
+			"./js/marcatexto.js",
+			"./js/telarecs.js"
 		],
 		"html": ["./index.html"]
 	   }
