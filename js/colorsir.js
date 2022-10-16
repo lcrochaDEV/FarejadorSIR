@@ -1,3 +1,11 @@
+function refresh(){
+	var origem = window.location.origin;
+	window[1][1][0].parent.frames.location = document.getElementsByClassName("listaTable").src = `${origem}/navegacao/NOVAframesetNivel2ListaDeTarefasAux.cfm`;
+	console.log("Tempo para atualização!");
+	atualizar = setInterval(() => {noturno();}, 800);		
+};
+//atualizar = setInterval(() => {refresh();}, 1200);
+
 function noturnoInicio(){
 //CORES DE FUNDO DO SIR	
     //CAMPOS DE TITULO

@@ -1,10 +1,16 @@
-function refresh(){
-	var origem = window.location.origin;
-	window[1][1][0].parent.frames.location = document.getElementsByClassName("listaTable").src = `${origem}/navegacao/NOVAframesetNivel2ListaDeTarefasAux.cfm`;
-	console.log("Tempo para atualização!");
-	atualizar = setInterval(() => {noturno();}, 800);		
-};
-//atualizar = setInterval(() => {refresh();}, 1200);
+//CONEXÃO COM O ARQUIVO HTML
+function conectJson(){
+	//CRIAMDO TABELA
+	fetch('./menu/menu.html')
+	  .then(function(response){ response.text()
+		.then(function(data){
+		  //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON
+		  document.querySelector('[data-menu]').innerHTML += data;
+		  //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON  	  
+		});
+	  })
+	}
+window.addEventListener("load", conectJson);
 
 //TEMPO DE ABERTORA DA ABA MENU LATERAL
 function open_sidebar() {
@@ -52,7 +58,6 @@ function clickEvent (){
 				menuLateral.push(dados);
 				//CADASTRA ITEM NO LOCALSTORGE
 				dados.cadastrarBD("menuLateral", menuLateral)
-				console.log(dados)
 			}else if(visibilityBtn === visibility.innerText){
 				visibility.innerText = "visibility_off";
 				visibility.style.background = "";
@@ -62,7 +67,7 @@ function clickEvent (){
 				//refresh();
 				//DELETE EM BD
 				menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'visibility'),1);
-				localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
+				dados.cadastrarBD("menuLateral", menuLateral)
 			}
 		});
 	//TEMPORIZADOR
@@ -70,11 +75,17 @@ function clickEvent (){
 	var contagem = 0;
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
+			const dados = new CadastroDados('2', contagem)
 			if(contagem > 0 && contagem < 6){
-				atualiza_dados("update_disabled", String(contagem));
+				//COLOCA MAIS UM INTEM NO OBJETO
+				menuLateral.find(dados => dados.id === '2' || []).valor = contagem;
+				//CADASTRA ITEM NO LOCALSTORGE
+				dados.cadastrarBD("menuLateral", menuLateral)
 				switchC(contagem);
 			}else if(contagem == 6){
-				deleta_banco("update_disabled");
+				menuLateral.splice(menuLateral.find(itens => itens.id === '2'),1);
+				dados.cadastrarBD("menuLateral", menuLateral)
+				//deleta_banco("update_disabled");
 				switchC(contagem);
 				return contagem = 0;
 			}			
@@ -101,7 +112,7 @@ function clickEvent (){
 			window[0].location.reload();
 			window[1].location.reload();
 			menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'dark_mode'),1);
-			localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
+			dados.cadastrarBD("menuLateral", menuLateral)
 		}
 	})
 	//FORME
@@ -109,7 +120,7 @@ function clickEvent (){
 	var forme = document.getElementById("formTag"); 
 	code.addEventListener("click", function(event) {
 		let formeBtn = event.target.id;
-		const dados = new CadastroDados('3', formeBtn)
+		const dados = new CadastroDados('4', formeBtn)
 			if(formeBtn === code.innerText){
 				code.innerText = "code_off";
 				code.style.background = "#001ADE";
@@ -119,44 +130,18 @@ function clickEvent (){
 				menuLateral.push(dados);
 				//CADASTRA ITEM NO LOCALSTORGE
 				dados.cadastrarBD("menuLateral", menuLateral)
-				console.log(dados)
-			}else if(formeBtn  !== code.innerText){
+			}else if(formeBtn !== code.innerText){
 				code.innerText = "code";
 				code.style.background = "";
 				forme.style.display = 'flex';
 				menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'code'),1);
-				localStorage.setItem("menuLateral", JSON.stringify(menuLateral));
+				dados.cadastrarBD("menuLateral", menuLateral)
 			}
 	});
 }
 window.addEventListener("load", clickEvent);
 
-//SALVA DADOS EM BD
-function save_dados(chaveId, pass_dados){
-	//CHECA SE EXISTE DADOS CADASTRADOS
-	var visibilityBD = localStorage.getItem(chaveId);
-		if(visibilityBD == true){
-			var dal = localStorage.removeItem(chaveId);
-			console.log(`Item deletado do Banco de Dados`);	
-		}else{
-			var dados = localStorage.setItem(chaveId, pass_dados);
-			console.log(`Dados foram salvos em Banco de Dados`);
-		}		
-}
-//ATUALIZA DADOS EM BD
-function atualiza_dados(chaveId, pass_dados){
-	var dados = localStorage.setItem(chaveId, pass_dados);
-	console.log(`Dados foram atualizados em Banco de Dados`);
-}
-//DELATA DADOS DE BD
-function deleta_banco(chaveId){
-	localStorage.removeItem(chaveId)
-	console.log(`Dados foram deletados em Banco de Dados`);
-}
-
-
 //BUSCA DADOS EM BD
-
 function update_dados(){
 
 	var visibility = document.getElementById("visibility");
@@ -164,28 +149,44 @@ function update_dados(){
 	var dark_mode = document.getElementById("dark_mode");
 	var code = document.getElementById("code");
 	var forme = document.getElementById("formTag"); 
+	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
+//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+		if(menuLateral.find(itens => itens.valor === visibility.id)){
+			console.log(`Item encontrado em Banco de Dados`);
+			visibility.innerText = "visibility";
+			visibility.style.background = "#001ADE";
+			//ATIVA BUSCA POR CCTOS LISTADOS
+			atualizarBusca = setInterval(() => {conectJson();}, 2000);
+		}
+		if(menuLateral.find(dados => dados.id === '2')){
+			console.log(`Item encontrado em Banco de Dados`);
+			switchC(Number(update_disabledBD));//NUMBER TRANSFORMA STRING E NUMEROS
+		} 
+		if(menuLateral.find(itens => itens.valor === dark_mode.id)){
+			console.log(`Item encontrado em Banco de Dados`);
+			dark_mode.innerText = "dark_mode";
+			dark_mode.style.background = "#001ADE";
 
-	if(menuLateral.find(itens => itens.valor === visibility.id)){
-		console.log(`Item encontrado em Banco de Dados`);
-		visibility.innerText = "visibility";
-		visibility.style.background = "#001ADE";
-		//ATIVA BUSCA POR CCTOS LISTADOS
-		atualizarBusca = setInterval(() => {conectJson();}, 2000);
-	}
-	if(menuLateral.find(itens => itens.valor === dark_mode.id)){
-		console.log(`Item encontrado em Banco de Dados`);
-		dark_mode.innerText = "dark_mode";
-		dark_mode.style.background = "#001ADE";
-
-			noturno();
-			exibir();
-	}
-	if(menuLateral.find(itens => itens.valor === code.id)){
-		console.log(`Item encontrado em Banco de Dados`);
+				noturno();
+				exibir();
+		}
+		if(menuLateral.find(itens => itens.valor === code.id)){
+			console.log(`Item encontrado em Banco de Dados`);
+			code.innerText = "code_off";
+			code.style.background = "#001ADE";
+			forme.style.display = "none";
+		}
+	/*}else{
+		visibility.style.pointerEvents = 'none';
+		visibility.style.background = "#3D3D3D";
+		update_disabled.style.pointerEvents = 'none';
+		update_disabled.style.background = "#3D3D3D";
+		dark_mode.style.pointerEvents = 'none';
+		dark_mode.style.background = "#3D3D3D";
 		code.innerText = "code_off";
 		code.style.background = "#001ADE";
 		forme.style.display = "none";
-	}
+	}*/
 }
 window.addEventListener('load', update_dados);
 //menuLateral.findIndex(itens => itens.valor === 'visibility')
@@ -256,7 +257,7 @@ function switchC(n){
 		var update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor
 			case 1: //primeira condição
-				update_disabled.innerText = "2";
+			pdate_disabled.innerText = "2";
 				update_disabled.style.background = "#001ADE";
 				//update_disabled.style.fontSize="15px";
 				//ATUALIZAZÃO EM 2 MINUTOS
