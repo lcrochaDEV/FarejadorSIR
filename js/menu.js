@@ -1,20 +1,19 @@
-//CONEXÃO COM O ARQUIVO HTML
-function conectJson(){
-	//CRIAMDO TABELA
-	fetch('./menu/menu.html')
+/*function includeHTML() {
+	let url = `https://raw.githubusercontent.com/lcrochaDEV/FarejadorSIR/master/menu/menu.html`;
+	fetch(url)
 	  .then(function(response){ response.text()
-		.then(function(data){
-		  //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON
-		  document.querySelector('[data-menu]').innerHTML += data;
-		  //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON  	  
+		.then(function(menu){
+		  //MENU
+			document.querySelector('[data-menu]').innerHTML += menu; 
 		});
 	  })
 	}
-window.addEventListener("load", conectJson);
+ window.addEventListener('load', includeHTML);
+*/
 
 //TEMPO DE ABERTORA DA ABA MENU LATERAL
 function open_sidebar() {
-	var mouseon = document.getElementById('btns');
+	var mouseon = document.querySelector('.btns');
 		mouseon.addEventListener("mouseout", function(event) {
 			mouseon.style.width = "50px";
 		});
@@ -24,7 +23,7 @@ window.addEventListener("load", open_sidebar);
 //BARRA LATERAL DIV MÃE
 function normal_sidebar() {
 	//Tempo de abetura e fechamento do menu 
-	var mouseover = document.getElementById('btns');
+	var mouseover = document.querySelector('.btns');
 		mouseover.addEventListener("mouseover", function(event) {
 			mouseover.style.width = "100px";
 		});
@@ -75,16 +74,16 @@ function clickEvent (){
 	var contagem = 0;
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
-			const dados = new CadastroDados('2', contagem)
+			//const dados = new CadastroDados('2', contagem)
 			if(contagem > 0 && contagem < 6){
 				//COLOCA MAIS UM INTEM NO OBJETO
-				menuLateral.find(dados => dados.id === '2' || []).valor = contagem;
+			//	menuLateral.find(dados => dados.id === '2' || []).valor = contagem;
 				//CADASTRA ITEM NO LOCALSTORGE
-				dados.cadastrarBD("menuLateral", menuLateral)
+			//	dados.cadastrarBD("menuLateral", menuLateral)
 				switchC(contagem);
 			}else if(contagem == 6){
-				menuLateral.splice(menuLateral.find(itens => itens.id === '2'),1);
-				dados.cadastrarBD("menuLateral", menuLateral)
+			//	menuLateral.splice(menuLateral.find(itens => itens.id === '2'),1);
+			//	dados.cadastrarBD("menuLateral", menuLateral)
 				//deleta_banco("update_disabled");
 				switchC(contagem);
 				return contagem = 0;
@@ -159,8 +158,8 @@ function update_dados(){
 			atualizarBusca = setInterval(() => {conectJson();}, 2000);
 		}
 		if(menuLateral.find(dados => dados.id === '2')){
-			console.log(`Item encontrado em Banco de Dados`);
-			switchC(Number(update_disabledBD));//NUMBER TRANSFORMA STRING E NUMEROS
+		//	console.log(`Item encontrado em Banco de Dados`);
+		//	switchC(Number(update_disabledBD));//NUMBER TRANSFORMA STRING E NUMEROS
 		} 
 		if(menuLateral.find(itens => itens.valor === dark_mode.id)){
 			console.log(`Item encontrado em Banco de Dados`);
@@ -257,7 +256,7 @@ function switchC(n){
 		var update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor
 			case 1: //primeira condição
-			pdate_disabled.innerText = "2";
+				update_disabled.innerText = "2";
 				update_disabled.style.background = "#001ADE";
 				//update_disabled.style.fontSize="15px";
 				//ATUALIZAZÃO EM 2 MINUTOS

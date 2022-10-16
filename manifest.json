@@ -31,7 +31,6 @@
 				],
 	"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
 	
-		"css": ["./menu.css"],
 		"js": [
 			"./js/conectdata.js",
 			"./js/buscarbandas.js",
@@ -44,7 +43,8 @@
 			"./js/marcatexto.js",
 			"./js/telarecs.js"
 		],
-		"html": ["./index.html"]
+		"html": ["./index.html"],
+		"css": ["./menu.css"]
 	   }
 	],
 	

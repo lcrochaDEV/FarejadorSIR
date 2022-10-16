@@ -128,8 +128,8 @@ input:focus + .input-group__label{
 
 /*LINK TEMPO*/
 /*BTNS*/
-#btns {float:right; background-color:#EEE; color:black; position:fixed; top:40%; right:-50px; z-index: 3; margin:10px; transition-duration: 1s;}
-#btns a {display:block; padding:12px; text-decoration:none; transition-duration:1s; filter:opacity(30%);}
-#btns a:hover {background-color:#000B17; color:red; display:block; padding:12px; text-decoration:none; filter:opacity(50%);}
-#btns .material-icons {color:#000B17; filter:opacity(70%);}
+.btns {float:right; background-color:#EEE; color:black; position:fixed; top:40%; right:-50px; z-index: 3; margin:10px; transition-duration: 1s;}
+.btns a {display:block; padding:12px; text-decoration:none; transition-duration:1s; filter:opacity(30%); cursor: pointer;}
+.btns a:hover {background-color:#000B17; color:red; display:block; padding:12px; text-decoration:none; filter:opacity(50%);}
+.btns .material-icons {color:#000B17; filter:opacity(70%);}
 /****************************************************************/
