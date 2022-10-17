@@ -21,7 +21,7 @@ function btnFult(){
 		div2.setAttribute("data-menu", "");   
 		html.appendChild(div2);
 
-	var arrTagaUP = ['visibility', 'update_disabled', 'dark_mode', 'code'];
+/*	var arrTagaUP = ['visibility', 'update_disabled', 'dark_mode', 'code'];
 	var arrTagDown = ['visibility_off', 'update_disabled', 'sunny', 'code'];
 	var btn = document.querySelector(".btns");
 		arrTagaUP.forEach((arrTagaUP, i) => {
@@ -31,7 +31,7 @@ function btnFult(){
 				//a1.setAttribute("href", "#");
 				a.textContent = arrTagDown[i];		
 				btn.appendChild(a);
-			})
+			})*/
 	//CRIA TAG HEADER
 	var div3 = document.createElement("div");
 		div3.setAttribute("data-menu-top", "");  

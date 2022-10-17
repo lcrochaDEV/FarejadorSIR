@@ -1,3 +1,15 @@
+/*function includeHTML() {
+	let url = `https://raw.githubusercontent.com/lcrochaDEV/FarejadorSIR/master/menu/formulario.html`;
+	fetch(url)
+	  .then(function(response){ response.text()
+		.then(function(form){
+		  //FORMULARIO
+			document.querySelector('[data-form]').innerHTML += form; 
+		});
+	  })
+	}
+ window.addEventListener('load', includeHTML);
+ */
 //CRIA TAG FORMULARIO
 function inputAreaCFs(passCfs){
 	const criandoElementsHtml = document.getElementById('formTag').innerHTML += `

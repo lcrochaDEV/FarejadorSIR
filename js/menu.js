@@ -1,34 +1,33 @@
-/*function includeHTML() {
+//CONEXÃO COM O ARQUIVO JSON
+function includeHTML() {
 	let url = `https://raw.githubusercontent.com/lcrochaDEV/FarejadorSIR/master/menu/menu.html`;
 	fetch(url)
 	  .then(function(response){ response.text()
 		.then(function(menu){
 		  //MENU
 			document.querySelector('[data-menu]').innerHTML += menu; 
+			clickEvent();
+			update_dados();
 		});
 	  })
-	}
+}
  window.addEventListener('load', includeHTML);
-*/
 
 //TEMPO DE ABERTORA DA ABA MENU LATERAL
 function open_sidebar() {
-	var mouseon = document.querySelector('.btns');
-		mouseon.addEventListener("mouseout", function(event) {
-			mouseon.style.width = "50px";
+	//INICO DA PAGINA
+	var menuMovemento = document.querySelector('.btns');
+		menuMovemento.style.width = "50px";
+	//ABERTURA DO MENU
+		menuMovemento.addEventListener("mouseout", function(event) {
+			menuMovemento.style.width = "50px";
+		});
+	//FECHAMENTO DO MENU
+		menuMovemento.addEventListener("mouseover", function(event) {
+			menuMovemento.style.width = "100px";
 		});
 }
 window.addEventListener("load", open_sidebar);
-
-//BARRA LATERAL DIV MÃE
-function normal_sidebar() {
-	//Tempo de abetura e fechamento do menu 
-	var mouseover = document.querySelector('.btns');
-		mouseover.addEventListener("mouseover", function(event) {
-			mouseover.style.width = "100px";
-		});
-}
-window.addEventListener("load", normal_sidebar);
 
 //BUSCA EM BANCO DE DADOS
 const menuLateral = JSON.parse(localStorage.getItem("menuLateral")) || [];
@@ -138,7 +137,7 @@ function clickEvent (){
 			}
 	});
 }
-window.addEventListener("load", clickEvent);
+//window.addEventListener("load", clickEvent);
 
 //BUSCA DADOS EM BD
 function update_dados(){
@@ -187,7 +186,7 @@ function update_dados(){
 		forme.style.display = "none";
 	}*/
 }
-window.addEventListener('load', update_dados);
+//window.addEventListener('load', update_dados);
 //menuLateral.findIndex(itens => itens.valor === 'visibility')
 
 	
