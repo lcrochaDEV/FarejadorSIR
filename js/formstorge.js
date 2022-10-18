@@ -1,17 +1,22 @@
-/*function includeHTML() {
+function includeHTML() {
 	let url = `https://raw.githubusercontent.com/lcrochaDEV/FarejadorSIR/master/menu/formulario.html`;
 	fetch(url)
 	  .then(function(response){ response.text()
 		.then(function(form){
 		  //FORMULARIO
-			document.querySelector('[data-form]').innerHTML += form; 
+			document.querySelector('[data-form]').innerHTML += form;
+			cfs(); 
+			deleta();
+			designacao();
+			recuperaLocalstorge();
+			recuperadados();
 		});
 	  })
 	}
  window.addEventListener('load', includeHTML);
- */
+ 
 //CRIA TAG FORMULARIO
-function inputAreaCFs(passCfs){
+/*function inputAreaCFs(passCfs){
 	const criandoElementsHtml = document.getElementById('formTag').innerHTML += `
 	<div id="campo-cfs" data-campo-cfs>
 		<form class="forme1" action="" method="post">
@@ -32,7 +37,7 @@ function inputAreaCFs(passCfs){
 	`;
 }
 window.addEventListener("load", inputAreaCFs);
-
+*/
 //CLASS
 class CadastroDadosForms {
 	constructor (id, valor){
@@ -93,7 +98,7 @@ function cfs(){
 			}
 		});
 }
-window.addEventListener("load", cfs);
+//window.addEventListener("load", cfs);
 
 //BUSCA DADOS E EXIBE NA TABELA
 function recuperaLocalstorge(){	
@@ -101,7 +106,7 @@ function recuperaLocalstorge(){
 		printCadastro(itens);
 	})
 }
-window.addEventListener("load", recuperaLocalstorge);
+//window.addEventListener("load", recuperaLocalstorge);
 
 //CADASTRA DADOS E EXIBE NA TABELA
 function printCadastro(itens){
@@ -127,7 +132,7 @@ function deleta(){
 		})
 	});
 }
-window.addEventListener("load", deleta);
+//window.addEventListener("load", deleta);
 
 /*=======================================================================================================================*/
 
@@ -177,7 +182,7 @@ function designacao(){
 	
 	});
 };
-window.addEventListener("load", designacao);
+//window.addEventListener("load", designacao);
 
 //BUSCA DADOS E EXIBE NA TABELA
 function recuperadados(){	
@@ -185,7 +190,7 @@ function recuperadados(){
 		buscaDadosBD(itens)
 	})
 }
-window.addEventListener("load", recuperadados);
+//window.addEventListener("load", recuperadados);
 
 //CADASTRA DADOS E EXIBE NA TABELA
 function buscaDadosBD(itens){

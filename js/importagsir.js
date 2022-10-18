@@ -12,7 +12,8 @@ function btnFult(){
 	var html = document.querySelector("html");
 	//CRIA TAG DO FORMULARIO DE FILTRO
 	var div1 = document.createElement("div");
-		div1.setAttribute("id", "formTag");    
+		div1.setAttribute("id", "formTag");
+		div1.setAttribute("data-form", "");  
 		html.appendChild(div1);
 
 	//CRIA TAG DO MENU LATERAL

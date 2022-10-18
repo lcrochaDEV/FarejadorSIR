@@ -27,10 +27,12 @@
 				"http://*/navegacao/framesetNivel1Aplicacao.cfm*/*",				
 				"http://10.13.54.150:20020/navegacao/framesetNivel1Aplicacao.cfm*",				
 				"http://sir.nt.embratel.com.br/navegacao/framesetNivel1Aplicacao.cfm*",
-				"http://192.168.1.254:80/"
+				"http://192.168.1.254:80/",
+				"http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"
 				],
-	"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
-	
+	//"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
+		
+		"css": ["./menu.css"],
 		"js": [
 			"./js/conectdata.js",
 			"./js/buscarbandas.js",
@@ -43,8 +45,7 @@
 			"./js/marcatexto.js",
 			"./js/telarecs.js"
 		],
-		"html": ["./index.html"],
-		"css": ["./menu.css"]
+		"html": ["./index.html"]
 	   }
 	],
 	

@@ -4,12 +4,12 @@ if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 
 	function rec(){
 		
-		let caminho = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
+		let url = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
 		
 		var head = window[2].document.querySelector("head");
 		var linkico = document.createElement("link");
 			linkico.setAttribute("rel", "stylesheet");
-			linkico.setAttribute("href", caminho);
+			linkico.setAttribute("href", url);
 			head.appendChild(linkico);
 		
 		var btn = document.createElement("button");
@@ -21,7 +21,7 @@ if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 			
 			
 			//OCULTA MANU LATERAL
-			document.querySelector('#btns').style.display = 'none';
+			document.querySelector('[data-form]').style.display = 'none';
 			//CSS COR NO BOTÃO CRIADO
 			window[2].document.querySelector('[data-recbtn]').style.background = '#001ADE';
 			window[2].document.querySelector('[data-recbtn]').style.opacity = '0.5';
