@@ -73,19 +73,36 @@ function clickEvent (){
 	var contagem = 0;
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
-			//const dados = new CadastroDados('2', contagem)
+			const dados = new CadastroDados('2', contagem)
 			if(contagem > 0 && contagem < 6){
-				//COLOCA MAIS UM INTEM NO OBJETO
-			//	menuLateral.find(dados => dados.id === '2' || []).valor = contagem;
-				//CADASTRA ITEM NO LOCALSTORGE
-			//	dados.cadastrarBD("menuLateral", menuLateral)
-				switchC(contagem);
-			}else if(contagem == 6){
-			//	menuLateral.splice(menuLateral.find(itens => itens.id === '2'),1);
-			//	dados.cadastrarBD("menuLateral", menuLateral)
-				//deleta_banco("update_disabled");
-				switchC(contagem);
-				return contagem = 0;
+				//SE O ARRAY NÃO EXISTIR OU FOR VAZIO
+				if(menuLateral.length === false || menuLateral.length === 0){
+					//COLOCA MAIS UM ITEM NO OBJETO
+					menuLateral.push(dados);
+					menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+					//CADASTRA ITEM NO LOCALSTORGE
+					dados.cadastrarBD("menuLateral", menuLateral)
+					switchC(contagem);
+				}else{
+					if(menuLateral.find(itens => itens.id === '2') === undefined ){
+						//COLOCA MAIS UM ITEM NO OBJETO
+						menuLateral.push(dados);
+						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+						//CADASTRA ITEM NO LOCALSTORGE
+						dados.cadastrarBD("menuLateral", menuLateral)
+						switchC(contagem);
+					}else if(menuLateral.find(itens => itens.id === '2') ){
+						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+						//CADASTRA ITEM NO LOCALSTORGE
+						dados.cadastrarBD("menuLateral", menuLateral);
+						switchC(contagem);
+					}
+				}
+			}else if(contagem === 6){
+			menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 1;
+			dados.cadastrarBD("menuLateral", menuLateral)
+			switchC(contagem);
+			return contagem = 0;
 			}			
 	});
 	//MODO ESCURO
@@ -174,7 +191,7 @@ function update_dados(){
 			code.style.background = "#001ADE";
 			forme.style.display = "none";
 		}
-	/*}else{
+/*	}else{
 		visibility.style.pointerEvents = 'none';
 		visibility.style.background = "#3D3D3D";
 		update_disabled.style.pointerEvents = 'none';
@@ -189,69 +206,10 @@ function update_dados(){
 //window.addEventListener('load', update_dados);
 //menuLateral.findIndex(itens => itens.valor === 'visibility')
 
-	
-
-
-
-
-//function update_dados(){
-
-/*	var visibilityBD = localStorage.getItem("visibility");
-	var update_disabledBD = localStorage.getItem("update_disabled");
-	var dark_modeBD = localStorage.getItem("dark_mode");
-	var codeBD = localStorage.getItem("code");
-	
-	var visibility = document.getElementById("visibility");
-	var update_disabled = document.getElementById("update_disabled");
-	var dark_mode = document.getElementById("dark_mode");
-	var code = document.getElementById("code");
-	var forme = document.getElementById("formTag"); 
-	
-	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
-		if(visibilityBD == true){
-			console.log(`Item encontrado em Banco de Dados`);
-			visibility.innerText = "visibility";
-			visibility.style.background = "#001ADE";
-			//ATIVA BUSCA POR CCTOS LISTADOS
-			atualizarBusca = setInterval(() => {conectJson();}, 2000);
-		} 
-		 if(update_disabledBD >= true){
-			console.log(`Item encontrado em Banco de Dados`);
-			switchC(Number(update_disabledBD));//NUMBER TRANSFORMA STRING E NUMEROS
-		} 
-		if(dark_modeBD == true){
-			console.log(`Item encontrado em Banco de Dados`);
-			dark_mode.innerText = "dark_mode";
-			dark_mode.style.background = "#001ADE";
-
-				noturno();
-				exibir();
-		}
-		if(codeBD == true){
-			console.log(`Item encontrado em Banco de Dados`);
-			code.innerText = "code_off";
-			code.style.background = "#001ADE";
-			forme.style.display = "none";
-		}	
-/*	}else{
-		visibility.style.pointerEvents = 'none';
-		visibility.style.background = "#3D3D3D";
-		update_disabled.style.pointerEvents = 'none';
-		update_disabled.style.background = "#3D3D3D";
-		dark_mode.style.pointerEvents = 'none';
-		dark_mode.style.background = "#3D3D3D";
-		code.innerText = "code_off";
-		code.style.background = "#001ADE";
-		forme.style.display = "none";
-	}*/
-//}
-//window.addEventListener("load", update_dados);
-
 //FUNÇÃO SWITCH ESCOLHA TIME
 function switchC(n){
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor
 			case 1: //primeira condição
@@ -283,7 +241,7 @@ function switchC(n){
 				//ATUALIZAZÃO EM 15 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 900000);//1200000 = 15 min
 				//atualiza_dados("update_disabled", 4)
-				break;
+			break;
 			case 5: //quinta condição
 				update_disabled.innerText = "20";
 				update_disabled.style.background = "#001ADE";
@@ -300,7 +258,7 @@ function switchC(n){
 				//n = 0;
 			break;
 		}
-	}
+	//}
 }
 	//OCULTA O FORMULARIO DE BUSCAS
 	//window[1][1][0].addEventListener("load", exibir);
