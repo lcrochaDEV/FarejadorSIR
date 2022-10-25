@@ -83,7 +83,7 @@ function clickEvent (){
 					//CADASTRA ITEM NO LOCALSTORGE
 					dados.cadastrarBD("menuLateral", menuLateral)
 					switchC(contagem);
-				}else{
+				}else if(menuLateral.length){
 					if(menuLateral.find(itens => itens.id === '2') === undefined ){
 						//COLOCA MAIS UM ITEM NO OBJETO
 						menuLateral.push(dados);
@@ -98,7 +98,7 @@ function clickEvent (){
 						switchC(contagem);
 					}
 				}
-			}else if(contagem === 6){
+			}else if(contagem == 6){
 			menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 1;
 			dados.cadastrarBD("menuLateral", menuLateral)
 			switchC(contagem);
@@ -212,7 +212,15 @@ function switchC(n){
 //	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor
-			case 1: //primeira condição
+			case 1:
+				update_disabled.innerText = "update_disabled";
+				update_disabled.style.background = "";
+				clearInterval(atualizar);
+				//DELETE EM BD
+				//localStorage.removeItem("update_disabled")
+				//n = 0;
+			break;
+			case 2: //primeira condição
 				update_disabled.innerText = "2";
 				update_disabled.style.background = "#001ADE";
 				//update_disabled.style.fontSize="15px";
@@ -221,28 +229,28 @@ function switchC(n){
 				//SALVE EM BD
 				//atualiza_dados("update_disabled", 1)
 			break;
-			case 2: //segunda condição
+			case 3: //segunda condição
 				update_disabled.innerText = "5";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 5 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 300000);//300000 = 5 min
 				//atualiza_dados("update_disabled", 2)
 			break;
-			case 3: //terceira condição
+			case 4: //terceira condição
 				update_disabled.innerText = "10";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 10 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 600000);//1200000 = 10 min
 				//atualiza_dados("update_disabled", 3)
 			break;
-			case 4: //quarta condição
+			case 5: //quarta condição
 				update_disabled.innerText = "15";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 15 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 900000);//1200000 = 15 min
 				//atualiza_dados("update_disabled", 4)
 			break;
-			case 5: //quinta condição
+			case 6: //quinta condição
 				update_disabled.innerText = "20";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 20 MINUTOS
