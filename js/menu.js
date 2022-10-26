@@ -42,6 +42,7 @@ class CadastroDados {
 	}
 }
 //ANIMAÇÃO EM MENUS
+var contagem = 0;
 function clickEvent (){
 	var visibility = document.getElementById("visibility");
 		visibility.addEventListener("click", function(event) {	
@@ -70,7 +71,7 @@ function clickEvent (){
 		});
 	//TEMPORIZADOR
 	var update_disabled = document.getElementById("update_disabled");
-	var contagem = 0;
+	
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
 			const dados = new CadastroDados('2', contagem)
@@ -158,26 +159,29 @@ function clickEvent (){
 
 //BUSCA DADOS EM BD
 function update_dados(){
-
+	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
+//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 	var visibility = document.getElementById("visibility");
 	var update_disabled = document.getElementById("update_disabled");
 	var dark_mode = document.getElementById("dark_mode");
 	var code = document.getElementById("code");
 	var forme = document.getElementById("formTag"); 
-	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
-		if(menuLateral.find(itens => itens.valor === visibility.id)){
+	menuLateral.forEach(itens => {
+		if(itens.valor === 'visibility'){
 			console.log(`Item encontrado em Banco de Dados`);
 			visibility.innerText = "visibility";
 			visibility.style.background = "#001ADE";
 			//ATIVA BUSCA POR CCTOS LISTADOS
 			atualizarBusca = setInterval(() => {conectJson();}, 2000);
 		}
-		if(menuLateral.find(dados => dados.id === '2')){
-		//	console.log(`Item encontrado em Banco de Dados`);
-		//	switchC(Number(update_disabledBD));//NUMBER TRANSFORMA STRING E NUMEROS
+		//TEMPORIZADOR
+		if(itens.id === '2'){
+			console.log(`Item encontrado em Banco de Dados`);
+			switchC(Number(itens.valor));
+			return contagem = itens.valor;
 		} 
-		if(menuLateral.find(itens => itens.valor === dark_mode.id)){
+		//MODO ESCURO
+		if(itens.valor === 'dark_mode'){
 			console.log(`Item encontrado em Banco de Dados`);
 			dark_mode.innerText = "dark_mode";
 			dark_mode.style.background = "#001ADE";
@@ -185,12 +189,14 @@ function update_dados(){
 				noturno();
 				exibir();
 		}
-		if(menuLateral.find(itens => itens.valor === code.id)){
+		//FORME
+		if(itens.valor === 'code'){
 			console.log(`Item encontrado em Banco de Dados`);
 			code.innerText = "code_off";
 			code.style.background = "#001ADE";
 			forme.style.display = "none";
 		}
+	});
 /*	}else{
 		visibility.style.pointerEvents = 'none';
 		visibility.style.background = "#3D3D3D";
@@ -256,14 +262,6 @@ function switchC(n){
 				//ATUALIZAZÃO EM 20 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 1200000);//1200000 = 20 min
 				//atualiza_dados("update_disabled", 5)
-			break;
-			case 6:
-				update_disabled.innerText = "update_disabled";
-				update_disabled.style.background = "";
-				clearInterval(atualizar);
-				//DELETE EM BD
-				//localStorage.removeItem("update_disabled")
-				//n = 0;
 			break;
 		}
 	//}
