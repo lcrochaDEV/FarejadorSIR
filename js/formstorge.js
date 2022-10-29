@@ -14,30 +14,6 @@ function includeHTML() {
 	  })
 	}
  window.addEventListener('load', includeHTML);
- 
-//CRIA TAG FORMULARIO
-/*function inputAreaCFs(passCfs){
-	const criandoElementsHtml = document.getElementById('formTag').innerHTML += `
-	<div id="campo-cfs" data-campo-cfs>
-		<form class="forme1" action="" method="post">
-			<input type="text" class="area" name="area" placeholder="&nbsp;" required name=nome />
-			<label class="input-group__label" for="cfs">CFs</label>
-			<button type="submit" class="sub-area" />Enviar</button>
-			<div data-dataCfs></div>
-		</form>
-	</div>
-	<div id="campo-ccto">
-		<form class="forme2" action="" method="post">
-			<input type="text" class="ccto" name="ccto" placeholder="&nbsp;" required name=nome />
-			<label class="input-group__label" for="cctos">CCTOs</label>
-			<button type="submit" id="sub-ccto" />Enviar</button>	
-			<div data-dataCctos></div>
-		</form>
-	</div>		
-	`;
-}
-window.addEventListener("load", inputAreaCFs);
-*/
 //CLASS
 class CadastroDadosForms {
 	constructor (id, valor){
@@ -142,6 +118,7 @@ const desigStorge = JSON.parse(localStorage.getItem("designacao")) || [];
 function designacao(){
 	let campoccto = document.querySelector('#campo-ccto');
 	campoccto.addEventListener("submit", (event) => {
+		console.log(event)
 	event.preventDefault(); //Inpede atualizar após evento Click(GET/POST).
 	let ccto = event.target.elements['ccto'];
 		//TRANSFORMANDO EM OBJETOS
@@ -149,22 +126,18 @@ function designacao(){
 			console.log(`Cadastre um item!`);
 		}else if(ccto.value != "" ){
 			//CADASTRO DE ID
-			
 			//let id = desigStorge.findIndex(id => id.id === desigStorge.length.toString())+1;
 			//console.log(id.id)
 			let id = desigStorge.findIndex(id => {
 				if(id.id === desigStorge.length -1)
 					return desigStorge.length;
-
 			}) +1;
-			
 			//CRIA OBEJTO EM CLASS
 			const dados = new CadastroDadosForms(id, ccto.value)
 			//CERIFICA CAFASTRO REPETIDOS
 			var lista = desigStorge.filter((cfs) => {
 				return (cfs.valor === ccto.value)
-			})
-						
+			})		
 			if(lista.length === 0){
 				//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
 				desigStorge.push(dados);
@@ -179,7 +152,6 @@ function designacao(){
 			ccto.value = "";
 			//BUCA DADOS EM EXIBE NA TABELA		
 		}
-	
 	});
 };
 //window.addEventListener("load", designacao);

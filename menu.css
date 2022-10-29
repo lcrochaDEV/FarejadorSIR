@@ -90,6 +90,7 @@ button{
     height: 25px;
     letter-spacing: 1px;
     transition-duration: 1s;
+	padding: 0 5px;
 }
 button:hover {background-color: #18a0ff;}
 button:active {transform: scale(0.95);}

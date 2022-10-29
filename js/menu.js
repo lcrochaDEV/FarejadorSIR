@@ -71,7 +71,6 @@ function clickEvent (){
 		});
 	//TEMPORIZADOR
 	var update_disabled = document.getElementById("update_disabled");
-	
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
 			const dados = new CadastroDados('2', contagem)
@@ -80,7 +79,7 @@ function clickEvent (){
 				if(menuLateral.length === false || menuLateral.length === 0){
 					//COLOCA MAIS UM ITEM NO OBJETO
 					menuLateral.push(dados);
-					menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+					menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem, 0);
 					//CADASTRA ITEM NO LOCALSTORGE
 					dados.cadastrarBD("menuLateral", menuLateral)
 					switchC(contagem);
@@ -88,19 +87,19 @@ function clickEvent (){
 					if(menuLateral.find(itens => itens.id === '2') === undefined ){
 						//COLOCA MAIS UM ITEM NO OBJETO
 						menuLateral.push(dados);
-						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem, 0);
 						//CADASTRA ITEM NO LOCALSTORGE
 						dados.cadastrarBD("menuLateral", menuLateral)
 						switchC(contagem);
 					}else if(menuLateral.find(itens => itens.id === '2') ){
-						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 0;
+						menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem, 0);
 						//CADASTRA ITEM NO LOCALSTORGE
 						dados.cadastrarBD("menuLateral", menuLateral);
 						switchC(contagem);
 					}
 				}
 			}else if(contagem == 6){
-			menuLateral.splice(menuLateral.find(itens => itens.id === '2').valor = contagem), 1;
+			menuLateral.splice(menuLateral.findIndex(itens => itens.id === '2'), 1);
 			dados.cadastrarBD("menuLateral", menuLateral)
 			switchC(contagem);
 			return contagem = 0;
@@ -159,45 +158,46 @@ function clickEvent (){
 
 //BUSCA DADOS EM BD
 function update_dados(){
-	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 	var visibility = document.getElementById("visibility");
 	var update_disabled = document.getElementById("update_disabled");
 	var dark_mode = document.getElementById("dark_mode");
 	var code = document.getElementById("code");
-	var forme = document.getElementById("formTag"); 
-	menuLateral.forEach(itens => {
-		if(itens.valor === 'visibility'){
-			console.log(`Item encontrado em Banco de Dados`);
-			visibility.innerText = "visibility";
-			visibility.style.background = "#001ADE";
-			//ATIVA BUSCA POR CCTOS LISTADOS
-			atualizarBusca = setInterval(() => {conectJson();}, 2000);
-		}
-		//TEMPORIZADOR
-		if(itens.id === '2'){
-			console.log(`Item encontrado em Banco de Dados`);
-			switchC(Number(itens.valor));
-			return contagem = itens.valor;
-		} 
-		//MODO ESCURO
-		if(itens.valor === 'dark_mode'){
-			console.log(`Item encontrado em Banco de Dados`);
-			dark_mode.innerText = "dark_mode";
-			dark_mode.style.background = "#001ADE";
+	var forme = document.getElementById("formTag");
+	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
+	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+		menuLateral.forEach(itens => {
+			//FILTRO CCTO
+			if(itens.valor === 'visibility'){
+				console.log(`Item encontrado em Banco de Dados`);
+				visibility.innerText = "visibility";
+				visibility.style.background = "#001ADE";
+				//ATIVA BUSCA POR CCTOS LISTADOS
+				atualizarBusca = setInterval(() => {conectJson();}, 2000);
+			}
+			//TEMPORIZADOR
+			if(itens.id === '2'){
+				console.log(`Item encontrado em Banco de Dados`);
+				switchC(Number(itens.valor));
+				return contagem = itens.valor;
+			} 
+			//MODO ESCURO
+			if(itens.valor === 'dark_mode'){
+				console.log(`Item encontrado em Banco de Dados`);
+				dark_mode.innerText = "dark_mode";
+				dark_mode.style.background = "#001ADE";
 
-				noturno();
-				exibir();
-		}
-		//FORME
-		if(itens.valor === 'code'){
-			console.log(`Item encontrado em Banco de Dados`);
-			code.innerText = "code_off";
-			code.style.background = "#001ADE";
-			forme.style.display = "none";
-		}
-	});
-/*	}else{
+					noturno();
+					exibir();
+			}
+			//FORME
+			if(itens.valor === 'code'){
+				console.log(`Item encontrado em Banco de Dados`);
+				code.innerText = "code_off";
+				code.style.background = "#001ADE";
+				forme.style.display = "none";
+			}
+		});
+	}else{
 		visibility.style.pointerEvents = 'none';
 		visibility.style.background = "#3D3D3D";
 		update_disabled.style.pointerEvents = 'none';
@@ -207,7 +207,7 @@ function update_dados(){
 		code.innerText = "code_off";
 		code.style.background = "#001ADE";
 		forme.style.display = "none";
-	}*/
+	}
 }
 //window.addEventListener('load', update_dados);
 //menuLateral.findIndex(itens => itens.valor === 'visibility')
@@ -215,56 +215,47 @@ function update_dados(){
 //FUNÇÃO SWITCH ESCOLHA TIME
 function switchC(n){
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-//	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor
-			case 1:
-				update_disabled.innerText = "update_disabled";
-				update_disabled.style.background = "";
-				clearInterval(atualizar);
-				//DELETE EM BD
-				//localStorage.removeItem("update_disabled")
-				//n = 0;
-			break;
-			case 2: //primeira condição
+			
+			case 1: //primeira condição
 				update_disabled.innerText = "2";
 				update_disabled.style.background = "#001ADE";
-				//update_disabled.style.fontSize="15px";
 				//ATUALIZAZÃO EM 2 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 120000);//1200000 = 2 min
-				//SALVE EM BD
-				//atualiza_dados("update_disabled", 1)
 			break;
-			case 3: //segunda condição
+			case 2: //segunda condição
 				update_disabled.innerText = "5";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 5 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 300000);//300000 = 5 min
-				//atualiza_dados("update_disabled", 2)
 			break;
-			case 4: //terceira condição
+			case 3: //terceira condição
 				update_disabled.innerText = "10";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 10 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 600000);//1200000 = 10 min
-				//atualiza_dados("update_disabled", 3)
 			break;
-			case 5: //quarta condição
+			case 4: //quarta condição
 				update_disabled.innerText = "15";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 15 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 900000);//1200000 = 15 min
-				//atualiza_dados("update_disabled", 4)
 			break;
-			case 6: //quinta condição
+			case 5: //quinta condição
 				update_disabled.innerText = "20";
 				update_disabled.style.background = "#001ADE";
 				//ATUALIZAZÃO EM 20 MINUTOS
 				atualizar = setInterval(() => {refresh();}, 1200000);//1200000 = 20 min
-				//atualiza_dados("update_disabled", 5)
+			break;
+			case 6:
+				update_disabled.innerText = "update_disabled";
+				update_disabled.style.background = "";
+				clearInterval(atualizar);
 			break;
 		}
-	//}
+	}
 }
 	//OCULTA O FORMULARIO DE BUSCAS
 	//window[1][1][0].addEventListener("load", exibir);
