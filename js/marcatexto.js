@@ -1,16 +1,22 @@
 //FUNÇÃO MARCA TEXTO
-const marcaTxt = JSON.parse(localStorage.getItem("marcaTxt")) || [];
 function marcaTexto(marcaParametro){
+	const marcaTxt = JSON.parse(localStorage.getItem("marcaTxt")) || [];
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO	
 	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var arrCores = ['#00ff00', '#cc0000', '#0099cc', '#cc0000', '#6600cc' , '#cc00cc'];
 		let cf = window[1][1][0][1].document.querySelectorAll(".listaCelulaFont");
 		marcaTxt.forEach((itens, i)=> {
 			cf.forEach(cf => {
-				if(cf.innerText === itens.valor){
-					cf.style.color = '#000';
-					cf.style.fontWeight = "bold"
-				cf.parentNode.style.background = arrCores[i];
+				if(cf.innerText == itens.valor){
+					if(arrCores[i] === '#00ff00'){
+						cf.style.color = '#000';
+						cf.style.fontWeight = "bold"
+						cf.parentNode.style.background = arrCores[i];
+					}else{
+						cf.style.color = '#fff';
+						cf.style.fontWeight = "bold"
+						cf.parentNode.style.background = arrCores[i];
+					}
 				}
 			})
 		})

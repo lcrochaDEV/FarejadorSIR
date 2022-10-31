@@ -2,8 +2,7 @@
 //if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 
 	var recs = window[2].document.querySelectorAll('.formularioSessaoTituloTr')[1].childNodes[3];
-	function rec(){
-		
+	function rec(){	
 		let url = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
 		
 		var head = window[2].document.querySelector("head");

@@ -22,18 +22,7 @@ function btnFult(){
 		div2.setAttribute("data-menu", "");   
 		html.appendChild(div2);
 
-/*	var arrTagaUP = ['visibility', 'update_disabled', 'dark_mode', 'code'];
-	var arrTagDown = ['visibility_off', 'update_disabled', 'sunny', 'code'];
-	var btn = document.querySelector(".btns");
-		arrTagaUP.forEach((arrTagaUP, i) => {
-			var a = document.createElement("a");
-				a.setAttribute("id", arrTagaUP);
-				a.setAttribute("class", "material-symbols-outlined");
-				//a1.setAttribute("href", "#");
-				a.textContent = arrTagDown[i];		
-				btn.appendChild(a);
-			})*/
-	//CRIA TAG HEADER
+	//CRIA TAG MENU-TOP
 	var div3 = document.createElement("div");
 		div3.setAttribute("data-menu-top", "");  
 		div3.setAttribute("class", "menu-top");  

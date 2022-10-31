@@ -10,5 +10,5 @@ function conectJson(){
 		  //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON  	  
 		});
 	  })
-	}
+}
 //window.addEventListener("DOMContentLoaded", conectJson);
