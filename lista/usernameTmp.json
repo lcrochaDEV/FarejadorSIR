@@ -1,0 +1,10 @@
+let userNamerede = [
+    {
+        codigo: "Z089196",
+        nome: "D.RITA"
+    },
+    {
+        codigo: "Z328444",
+        nome: "ARLETE"
+    }
+];

@@ -24,7 +24,7 @@ var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable td");
 		}
 	})
 }
-//atualizar = setInterval(() => {buscar();}, 2000);
+
 //BANDAS DE AUTA HIERARQUIA 
 function bandas(data) {
 var arr = [];

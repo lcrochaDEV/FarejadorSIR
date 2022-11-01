@@ -217,8 +217,7 @@ function switchC(n){
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
 	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var update_disabled = document.getElementById("update_disabled")
-		switch(n){ //avaliação do valor
-			
+		switch(n){ //avaliação do valor			
 			case 1: //primeira condição
 				update_disabled.innerText = "2";
 				update_disabled.style.background = "#001ADE";

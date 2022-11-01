@@ -118,7 +118,6 @@ const desigStorge = JSON.parse(localStorage.getItem("designacao")) || [];
 function designacao(){
 	let campoccto = document.querySelector('#campo-ccto');
 	campoccto.addEventListener("submit", (event) => {
-		console.log(event)
 	event.preventDefault(); //Inpede atualizar após evento Click(GET/POST).
 	let ccto = event.target.elements['ccto'];
 		//TRANSFORMANDO EM OBJETOS
@@ -154,15 +153,14 @@ function designacao(){
 		}
 	});
 };
-//window.addEventListener("load", designacao);
 
 //BUSCA DADOS E EXIBE NA TABELA
 function recuperadados(){	
 	desigStorge.forEach(itens => {
-		buscaDadosBD(itens)
+		 buscaDadosBD(itens)
 	})
+	deletaDados();
 }
-//window.addEventListener("load", recuperadados);
 
 //CADASTRA DADOS E EXIBE NA TABELA
 function buscaDadosBD(itens){
@@ -176,18 +174,18 @@ function buscaDadosBD(itens){
 }
 //DELETAR DADOS DO LOCALSTORGE
 function deletaDados(){
-	let apagar = document.querySelectorAll('[data-dataccto]');
-	let datatxt = document.querySelectorAll('[data-datatxt]');
-		apagar.forEach((apagardados, i) => {
-			apagardados.addEventListener("click", (event) => {
-				desigStorge.splice(desigStorge.findIndex(itens => itens.valor === datatxt[i].innerText),1);
+	//NOVO DELETE
+	let deletar = document.querySelectorAll('[data-delete]');
+		deletar.forEach(deletar => {
+			deletar.addEventListener("click", (event) => {       
+				console.log(event);
+				desigStorge.splice(desigStorge.findIndex(itens => itens.valor === deletar.parentNode.firstElementChild.innerText),1);
 				localStorage.setItem("designacao", JSON.stringify(desigStorge));
-				apagardados.remove();
-			})
+				deletar.parentElement.remove();
+			});
 		});
 }
 
-window.addEventListener("load", deletaDados);
 /*
 splice - O método splice() altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos.
 
