@@ -6,7 +6,7 @@ function includeHTML() {
 		  //FORMULARIO
 			document.querySelector('[data-form]').innerHTML += form;
 			cfs(); 
-			deleta();
+			deletar();
 			designacao();
 			recuperaLocalstorge();
 			recuperadados();
@@ -81,6 +81,7 @@ function recuperaLocalstorge(){
 	itensStorge.forEach(itens => { 
 		printCadastro(itens);
 	})
+	deletar();
 }
 //window.addEventListener("load", recuperaLocalstorge);
 
@@ -97,16 +98,17 @@ function printCadastro(itens){
 //<button type="submit" data-delete class="material-symbols-outlined" />delete</button>
 //<a href="#" data-delete class="material-symbols-outlined" />delete</a>
 //DELETA ELEMENTO DE LOCALSTORG
-function deleta(){
-	let apagar = document.querySelectorAll('[data-dataArea]');
-	let datatxt = document.querySelectorAll('[data-datacfstxt]');
-	apagar.forEach((apagar, i) => {
-		apagar.addEventListener("click", (event) => {
-			itensStorge.splice(itensStorge.findIndex(itens => itens.valor === datatxt[i].innerText),1);
-			localStorage.setItem("marcaTxt", JSON.stringify(itensStorge));
-			apagar.remove();
-		})
-	});
+function deletar(){
+	//NOVO DELETE
+	let deletar = document.querySelectorAll('[data-dataCfs]');
+		deletar.forEach(deletar => {
+			deletar.addEventListener("click", (event) => {       
+				console.log(event);
+				itensStorge.splice(itensStorge.findIndex(itens => itens.valor === deletar.parentNode.firstElementChild.innerText),1);
+				localStorage.setItem("designacao", JSON.stringify(itensStorge));
+				deletar.parentElement.remove();
+			});
+		});
 }
 //window.addEventListener("load", deleta);
 
@@ -125,8 +127,6 @@ function designacao(){
 			console.log(`Cadastre um item!`);
 		}else if(ccto.value != "" ){
 			//CADASTRO DE ID
-			//let id = desigStorge.findIndex(id => id.id === desigStorge.length.toString())+1;
-			//console.log(id.id)
 			let id = desigStorge.findIndex(id => {
 				if(id.id === desigStorge.length -1)
 					return desigStorge.length;
@@ -159,7 +159,7 @@ function recuperadados(){
 	desigStorge.forEach(itens => {
 		 buscaDadosBD(itens)
 	})
-	deletaDados();
+	deletarDados();
 }
 
 //CADASTRA DADOS E EXIBE NA TABELA
@@ -173,7 +173,7 @@ function buscaDadosBD(itens){
 		`;
 }
 //DELETAR DADOS DO LOCALSTORGE
-function deletaDados(){
+function deletarDados(){
 	//NOVO DELETE
 	let deletar = document.querySelectorAll('[data-delete]');
 		deletar.forEach(deletar => {

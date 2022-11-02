@@ -5,7 +5,10 @@ const caminhoURL = `${origem}/navegacao/framesetNivel1Aplicacao.cfm`;
 const caminhoActiveLink = `${caminhoURL}?opcaoEscolhida=NOVA_LIS_TAR`;
 
 //OCULTA BOTÃO DE BUSCA DE DADOS DAS RECS
-let link = `${origem}?item=`;
-let btns = window.location.href.indexOf(link);
+let links = `?exibe_msg=`;
+let btns = window.location.href.indexOf(links);
 
-console.log(btns)
+if(btns){
+	console.log(btns)
+}
+

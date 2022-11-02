@@ -1,10 +1,18 @@
-let userNamerede = [
+[
     {
-        codigo: "Z089196",
-        nome: "D.RITA"
-    },
-    {
-        codigo: "Z328444",
-        nome: "ARLETE"
+        "userNamerede": [
+            {
+                "codigo": "Z089196",
+                "nome": "D.RITA"
+            },
+            {
+                "codigo": "Z328444",
+                "nome": "ARLETE"
+            },
+			{
+                "codigo": "F125928",
+                "nome": "BENÉ"
+            }
+        ]
     }
-];
+]
