@@ -27,7 +27,7 @@ function rec(){
 		window[2].document.querySelector('[data-recbtn]').style.margin  = '1px';
 		window[2].document.querySelector('[data-recbtn]').style.padding  = '3px 6px';
 
-let btncopy = window[2].document.querySelector('[data-recbtn]');
+	let btncopy = window[2].document.querySelector('[data-recbtn]');
 	btncopy.addEventListener('click', function(event) {
 		//Alteração em oaginas do SIR
 		let rec = window[1].document.querySelectorAll(".formularioTextFont > b")[0].innerText; //REC
@@ -48,7 +48,7 @@ let btncopy = window[2].document.querySelector('[data-recbtn]');
 				window.popup.close()
 			}
 		window.addEventListener("beforeunload", (event) =>{window.popup.close()})
-		var popup = window.open('about:blank','popup','width=700, height=300, scrolling=auto, top=0, left=0');
+	var popup = window.open('about:blank',`${rec}`,'width=700, height=300, scrolling=auto, top=0, left=0');
 		popup.document.write(`<textarea id="acionamentoTxt" value="" rows="14" cols="70">OBSERVAÇÕES:\nNOME DA EMPRESA: ${emp}\nCLIENTE/CONTATO: ${cliente} ${tel}\nHORÁRIO DE EXPEDIENTE:\nPRAZO DE SLA: ${sla}H\nREC REINCIDENTE: ${rein()}\nACESSO/MARCA/MODELO:\nTRANSMISSÃO/FACILIDADES:</textarea>`); 
 
 		popup.document.title = `${rec.substr(0, 18)}`;
@@ -57,3 +57,31 @@ let btncopy = window[2].document.querySelector('[data-recbtn]');
 }	
 
 window.addEventListener("load", rec);
+
+async function camptextbox(){
+	let rec = window[1].document.querySelectorAll(".formularioTextFont > b")[0].innerText; //REC
+	let textArea = await window[2].document.getElementsByTagName('textarea')['observacao'];
+	var btn = document.createElement("button");
+		btn.setAttribute("type", "button");
+		btn.setAttribute("data-textbox", "");  
+		btn.setAttribute("class", "material-symbols-outlined");
+		btn.innerText = 'content_copy';
+		textArea.parentElement.appendChild(btn); //'content_copy';
+		
+	//CSS COR NO BOTÃO CRIADO
+	window[2].document.querySelector('[data-textbox]').style.background = '#001ADE';
+	window[2].document.querySelector('[data-textbox]').style.opacity = '0.5';
+	window[2].document.querySelector('[data-textbox]').style.color = '#fff';
+	window[2].document.querySelector('[data-textbox]').style.border = 'none';
+	window[2].document.querySelector('[data-textbox]').style.fontSize = '20px';
+	window[2].document.querySelector('[data-textbox]').style.margin  = '1px';
+	window[2].document.querySelector('[data-textbox]').style.padding  = '1px 6px';
+
+	let btncopy = window[2].document.querySelector('[data-textbox]');
+		btncopy.addEventListener('click', function(event) {
+		let popup = window.open('about:blank','popup','width=700, height=300, scrolling=auto, top=0, left=0');
+			popup.document.write(`<textarea id="acionamentoTxt" value="" rows="14" cols="70">${textArea.value}</textarea>`); 
+			popup.document.title = `${rec.substr(0, 18)}`;
+		})
+}
+window.addEventListener('load', camptextbox);
