@@ -27,8 +27,8 @@
 				"http://*/navegacao/framesetNivel1Aplicacao.cfm*/*",				
 				"http://10.13.54.150:20020/navegacao/framesetNivel1Aplicacao.cfm*",				
 				"http://sir.nt.embratel.com.br/navegacao/framesetNivel1Aplicacao.cfm*",
-				"http://192.168.1.254:80/",
-				"http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"
+				"http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*",
+				"http://192.168.1.254:80/"
 				],
 	//"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
 		

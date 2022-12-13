@@ -11,7 +11,7 @@ function includeHTML() {
 		});
 	  })
 }
- window.addEventListener('load', includeHTML);
+window.addEventListener('load', includeHTML);
 
 //TEMPO DE ABERTORA DA ABA MENU LATERAL
 function open_sidebar() {
