@@ -43,4 +43,4 @@ function buscaBandas(){
         }
     })
 }
-atualizar = setInterval(() => {buscaBandas();}, 2000);
+//atualizar = setInterval(() => {buscaBandas();}, 2000);
