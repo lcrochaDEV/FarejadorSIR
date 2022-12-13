@@ -22,3 +22,4 @@ function usernameTmp(){
          })
       })
   }
+  atualizar = setInterval(() => {usernameTmp();}, 2000);
