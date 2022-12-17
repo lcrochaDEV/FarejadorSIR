@@ -186,7 +186,7 @@ function clickEvent (){
 //BUSCA DADOS EM BD
 function update_dados(){
 	let visibility = document.getElementById("visibility");
-	let filter_list = document.getElementById("view_list");
+	let filter_list = document.getElementById("filter_list");
 	let update_disabled = document.getElementById("update_disabled");
 	let dark_mode = document.getElementById("dark_mode");
 	let code = document.getElementById("code");
