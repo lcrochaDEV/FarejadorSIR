@@ -16,7 +16,7 @@ window.addEventListener('load', includeHTML);
 //TEMPO DE ABERTORA DA ABA MENU LATERAL
 function open_sidebar() {
 	//INICO DA PAGINA
-	var menuMovemento = document.querySelector('.btns');
+	let menuMovemento = document.querySelector('.btns');
 		menuMovemento.style.width = "50px";
 	//ABERTURA DO MENU
 		menuMovemento.addEventListener("mouseout", function(event) {
@@ -42,9 +42,9 @@ class CadastroDados {
 	}
 }
 //ANIMAÇÃO EM MENUS
-var contagem = 0;
+let contagem = 0;
 function clickEvent (){
-	var visibility = document.getElementById("visibility");
+	let visibility = document.getElementById("visibility");
 		visibility.addEventListener("click", function(event) {	
 			let visibilityBtn = event.target.id;
 			const dados = new CadastroDados('1', visibilityBtn)
@@ -69,8 +69,35 @@ function clickEvent (){
 				dados.cadastrarBD("menuLateral", menuLateral)
 			}
 		});
+	//FILTRO DE BANDAS
+	let filter_list = document.getElementById("filter_list");
+		filter_list.addEventListener("click", function(event) {
+			let filter_listBtn = event.target.id;
+			const dados = new CadastroDados('5', filter_listBtn)
+			if(filter_listBtn === filter_list.innerText){
+				filter_list.innerText = "filter_list";
+				filter_list.style.background = "#001ADE";
+				//ATIVA BUSCA POR CCTOS LISTADOS	
+				atualizarBanda = setInterval(() => {buscaBandas();}, 2000);	
+				//COLOCA MAIS UM INTEM NA LISTA DE ARRAY
+				menuLateral.push(dados);
+				//CADASTRA ITEM NO LOCALSTORGE
+				dados.cadastrarBD("menuLateral", menuLateral)
+			}else if(filter_list !== filter_list.innerText){
+				filter_list.innerText = "filter_list_off";
+				filter_list.style.background = "";
+				//PARA ATUALIZAÇÃO DE BUSCA
+				//clearInterval(atualizarBanda);
+				window.location.reload()
+				//refresh();
+				//DELETE EM BD
+				menuLateral.splice(menuLateral.findIndex(itens => itens.valor === 'filter_list'),1);
+				dados.cadastrarBD("menuLateral", menuLateral)
+			}
+		})
+
 	//TEMPORIZADOR
-	var update_disabled = document.getElementById("update_disabled");
+	let update_disabled = document.getElementById("update_disabled");
 		update_disabled.addEventListener("click", function(event) {
 			contagem ++;
 			const dados = new CadastroDados('2', contagem)
@@ -99,14 +126,14 @@ function clickEvent (){
 					}
 				}
 			}else if(contagem == 6){
-			menuLateral.splice(menuLateral.findIndex(itens => itens.id === '2'), 1);
-			dados.cadastrarBD("menuLateral", menuLateral)
-			switchC(contagem);
-			return contagem = 0;
+				menuLateral.splice(menuLateral.findIndex(itens => itens.id === '2'), 1);
+				dados.cadastrarBD("menuLateral", menuLateral)
+				switchC(contagem);
+				return contagem = 0;
 			}			
 	});
 	//MODO ESCURO
-	var dark_mode = document.getElementById("dark_mode");
+	let dark_mode = document.getElementById("dark_mode");
 	dark_mode.addEventListener("click", function(event) {
 		let dark_modeBtn = event.target.id;
 		const dados = new CadastroDados('3', dark_modeBtn)
@@ -131,8 +158,8 @@ function clickEvent (){
 		}
 	})
 	//FORME
-	var code = document.getElementById("code");
-	var forme = document.getElementById("formTag"); 
+	let code = document.getElementById("code");
+	let forme = document.getElementById("formTag"); 
 	code.addEventListener("click", function(event) {
 		let formeBtn = event.target.id;
 		const dados = new CadastroDados('4', formeBtn)
@@ -158,11 +185,12 @@ function clickEvent (){
 
 //BUSCA DADOS EM BD
 function update_dados(){
-	var visibility = document.getElementById("visibility");
-	var update_disabled = document.getElementById("update_disabled");
-	var dark_mode = document.getElementById("dark_mode");
-	var code = document.getElementById("code");
-	var forme = document.getElementById("formTag");
+	let visibility = document.getElementById("visibility");
+	let filter_list = document.getElementById("view_list");
+	let update_disabled = document.getElementById("update_disabled");
+	let dark_mode = document.getElementById("dark_mode");
+	let code = document.getElementById("code");
+	let forme = document.getElementById("formTag");
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
 	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		menuLateral.forEach(itens => {
@@ -173,6 +201,14 @@ function update_dados(){
 				visibility.style.background = "#001ADE";
 				//ATIVA BUSCA POR CCTOS LISTADOS
 				atualizarBusca = setInterval(() => {conectJson();}, 2000);
+			}
+			//FILTRO DE BANDAS
+			if(itens.valor === 'filter_list'){
+				console.log(`Item encontrado em Banco de Dados`);
+				filter_list.innerText = "filter_list";
+				filter_list.style.background = "#001ADE";
+				//ATIVA BUSCA POR CCTOS LISTADOS
+				atualizarBusca = setInterval(() => {buscaBandas();}, 2000);
 			}
 			//TEMPORIZADOR
 			if(itens.id === '2'){
@@ -200,6 +236,9 @@ function update_dados(){
 	}else{
 		visibility.style.pointerEvents = 'none';
 		visibility.style.background = "#3D3D3D";
+		filter_list.style.pointerEvents = 'none';
+		filter_list.style.background = "#3D3D3D";
+		filter_list.innerText = "filter_list_off";
 		update_disabled.style.pointerEvents = 'none';
 		update_disabled.style.background = "#3D3D3D";
 		dark_mode.style.pointerEvents = 'none';
@@ -209,14 +248,12 @@ function update_dados(){
 		forme.style.display = "none";
 	}
 }
-//window.addEventListener('load', update_dados);
-//menuLateral.findIndex(itens => itens.valor === 'visibility')
 
 //FUNÇÃO SWITCH ESCOLHA TIME
 function switchC(n){
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
 	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
-		var update_disabled = document.getElementById("update_disabled")
+		let update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor			
 			case 1: //primeira condição
 				update_disabled.innerText = "2";
@@ -256,13 +293,3 @@ function switchC(n){
 		}
 	}
 }
-	//OCULTA O FORMULARIO DE BUSCAS
-	//window[1][1][0].addEventListener("load", exibir);
-	//document.getElementsByClassName("listaTable ")[0].parentNode //NO PAI;
-	//document.getElementsByClassName("listaTable ")[0].children; //NO FILHO
-	
-	/*
-	window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseover");
-	window[1][1][0][1].document.querySelectorAll("*")[14].removeAttribute("onmouseout");
-	*/
-

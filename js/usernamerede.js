@@ -22,4 +22,4 @@ function usernameTmp(){
          })
       })
   }
-  atualizar = setInterval(() => {usernameTmp();}, 2000);
+  console.log(atualizar = setInterval(() => {usernameTmp();}, 2000));
