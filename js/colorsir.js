@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", noturno);
 //BOTÃO EXIBIR DO SIR
 function exibir(){
 //BOTÃO EXIBIR
-var exibir = window[1][0].document.querySelectorAll(".formulariobutton")[1];
+var exibir = window[1][0].document.getElementsByClassName('formulariobutton')['confirma'];
     exibir.addEventListener("click", function(event){
         console.log("Botão Exibir");
         //return noturno();

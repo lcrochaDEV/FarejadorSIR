@@ -1,8 +1,6 @@
 //FUNÇÃO MARCA TEXTO
 function marcaTexto(marcaParametro){
 	const marcaTxt = JSON.parse(localStorage.getItem("marcaTxt")) || [];
-	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO	
-	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
 		var arrCores = ['#00ff00', '#cc0000', '#0099cc', '#cc0000', '#6600cc' , '#cc00cc'];
 		let cf = window[1][1][0][1].document.querySelectorAll(".listaCelulaFont");
 		marcaTxt.forEach((itens, i)=> {
@@ -35,12 +33,4 @@ function marcaTexto(marcaParametro){
 					}
 				})
 			})
-	}
 };
-atualizar = setInterval(() => {marcaTexto();}, 2000);
-
-
-//window[1][1][0][1].document.querySelectorAll(".listaTable td")[4].parentElement.removeAttribute("onmouseover");
-
-//window[1][1][0][1].document.querySelectorAll(".listaTable td")[4].parentElement.removeAttribute("onmouseout");
-

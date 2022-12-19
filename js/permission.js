@@ -8,7 +8,11 @@ const caminhoActiveLink = `${caminhoURL}?opcaoEscolhida=NOVA_LIS_TAR`;
 let links = `?exibe_msg=`;
 let btns = window.location.href.indexOf(links);
 
-if(btns){
-	console.log(btns)
-}
+//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO	
+if(caminhoURL === urlAtual || caminhoActiveLink === urlAtual){
+	atualizar = setInterval(() => {
+		marcaTexto();
+		usernameTmp();
+	}, 2000);
 
+}

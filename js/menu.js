@@ -74,7 +74,7 @@ function clickEvent (){
 		filter_list.addEventListener("click", function(event) {
 			let filter_listBtn = event.target.id;
 			const dados = new CadastroDados('5', filter_listBtn)
-			if(filter_listBtn === filter_list.innerText){
+			if(filter_listBtn !== filter_list.innerText){
 				filter_list.innerText = "filter_list";
 				filter_list.style.background = "#001ADE";
 				//ATIVA BUSCA POR CCTOS LISTADOS	
@@ -83,7 +83,7 @@ function clickEvent (){
 				menuLateral.push(dados);
 				//CADASTRA ITEM NO LOCALSTORGE
 				dados.cadastrarBD("menuLateral", menuLateral)
-			}else if(filter_list !== filter_list.innerText){
+			}else if(filter_listBtn === filter_list.innerText){
 				filter_list.innerText = "filter_list_off";
 				filter_list.style.background = "";
 				//PARA ATUALIZAÇÃO DE BUSCA

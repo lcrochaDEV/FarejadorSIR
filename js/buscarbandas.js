@@ -27,7 +27,7 @@ var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable td");
 //BANDAS DE AUTA HIERARQUIA 
 function buscaBandas(){
 	var bodyrec = window[1][1][0][1].document.querySelectorAll(".listaTable tr");
-    let regex = /(?:OCH|\sIT\S|B4S|B16S|VC4S|OMS|OTS|1G|10G|B40W|10G)/gm; //LSTA DE BANDAS PARA BUSCA -> EXPESSÕES REGULARES
+    let regex = /(?:OCH|^\bIT|B4S|B16S|VC4S|OMS|OTS|1G|10G|B40W|10G)/gm; //LSTA DE BANDAS PARA BUSCA -> EXPESSÕES REGULARES
     bodyrec.forEach(bodyrec => {
         let texto = bodyrec.innerText;	
 		let capturatxt = [... texto.matchAll(regex)];

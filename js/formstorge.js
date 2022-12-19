@@ -6,13 +6,12 @@ function includeHTML() {
 		  //FORMULARIO
 			document.querySelector('[data-form]').innerHTML += form;
 			cfs(); 
-			deletar();
 			designacao();
 			recuperaLocalstorge();
 			recuperadados();
 		});
 	  })
-	}
+}
  window.addEventListener('load', includeHTML);
 //CLASS
 class CadastroDadosForms {

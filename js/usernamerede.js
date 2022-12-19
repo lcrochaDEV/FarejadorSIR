@@ -5,8 +5,7 @@ function usernameTmp(){
       .then(function(response){ response.json()
       .then(function(data){
         //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON
-        bucarDadosUser(data[0].userNamerede);
-            
+        bucarDadosUser(data[0].userNamerede);           
         //PASSAGEM POR PARAMENTROS DA BUSCA NO ARQUIVO JSON  	  
       });
       })
@@ -22,4 +21,3 @@ function usernameTmp(){
          })
       })
   }
-  console.log(atualizar = setInterval(() => {usernameTmp();}, 2000));
