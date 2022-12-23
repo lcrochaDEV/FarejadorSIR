@@ -192,7 +192,7 @@ function update_dados(){
 	let code = document.getElementById("code");
 	let forme = document.getElementById("formTag");
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+	if(linksProtect.find(itens => itens.link === urlAtual)){
 		menuLateral.forEach(itens => {
 			//FILTRO CCTO
 			if(itens.valor === 'visibility'){
@@ -252,7 +252,7 @@ function update_dados(){
 //FUNÇÃO SWITCH ESCOLHA TIME
 function switchC(n){
 	//BUSCA URL E COLOCA CONDIÇÃO DE BLOQUEI SE ESTIVER FORA DO LINK DESEJADO
-	if(caminhoURL == urlAtual || caminhoActiveLink == urlAtual){
+	if(linksProtect.find(itens => itens.link === urlAtual)){
 		let update_disabled = document.getElementById("update_disabled")
 		switch(n){ //avaliação do valor			
 			case 1: //primeira condição

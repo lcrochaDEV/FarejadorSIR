@@ -37,13 +37,13 @@
 			"./js/conectdata.js",
 			"./js/buscarbandas.js",
 			"./js/importagsir.js",
-			"./js/permission.js",
+			"./admin/permission.js",
 			"./js/menu-top.js",
 			"./js/menu.js",
 			"./js/colorsir.js",
 			"./js/formstorge.js",
 			"./js/marcatexto.js",
-			"./js/telarecs.js",
+			"./telasrecral/telarecs.js",
 			"./js/usernamerede.js"
 		],
 		"html": ["./index.html"]

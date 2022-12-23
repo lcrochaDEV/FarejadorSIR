@@ -31,7 +31,7 @@ function rec(){
 	btncopy.addEventListener('click', function(event) {
 		//Alteração em oaginas do SIR
 		let rec = window[1].document.querySelectorAll(".formularioTextFont > b")[0].innerText; //REC
-		var sla = window[1].document.querySelectorAll(".formularioTextFont > b")[2].innerHTML; //SLA
+		var sla = window[1].document.querySelectorAll(".formularioTextFont > b")[2].innerText; //SLA
 		var emp = window[1].document.getElementsByTagName("input")[9].value; //NOME EMPRESA
 		var cliente = window[1].document.getElementsByTagName("input")[10].value; //NOME CLIENTE
 		var tel = window[1].document.querySelectorAll(".formularioTextFont")[10].title; //TELEFONE
@@ -58,9 +58,10 @@ function rec(){
 
 window.addEventListener("load", rec);
 
-async function camptextbox(){
+function camptextbox(){
 	let rec = window[1].document.querySelectorAll(".formularioTextFont > b")[0].innerText; //REC
-	let textArea = await window[2].document.getElementsByTagName('textarea')['observacao'];
+	let textArea = window[2].document.getElementsByTagName('textarea')['observacao'];
+	
 	var btn = document.createElement("button");
 		btn.setAttribute("type", "button");
 		btn.setAttribute("data-textbox", "");  

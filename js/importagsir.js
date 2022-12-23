@@ -37,4 +37,4 @@ function css(){
 	window[1][0].document.querySelector('.formularioLabelFont img').style.width = '20px' 
 	//document.getElementsByTagName('html')[0].style.margin = '80px 0';
 }
-window.addEventListener("load", css);
+

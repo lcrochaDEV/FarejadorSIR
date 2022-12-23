@@ -22,13 +22,13 @@ function noturnoInicio(){
                 tabela.style.transition = "0.9s";
         }	
     //TELA ROSA
-    var telaRosa = window[1][1][0][0].document.querySelectorAll(".menuNivel2TituloFont")[0];
-        telaRosa.style.backgroundColor = "#E8E8E8";
-        telaRosa.style.transition = "0.9s";
-    var textoRosa = window[1][1][0][0].document.querySelectorAll(".listaColunaTituloFont");
-        textoRosa.forEach(textoRosa => {
-            textoRosa.style.color = "#E8E8E8";
-            textoRosa.style.transition = "0.9s";
+    var menuNivel2TituloFont = window[1][1][0][0].document.querySelectorAll(".menuNivel2TituloFont")[0];
+        menuNivel2TituloFont.style.backgroundColor = "#E8E8E8";
+        menuNivel2TituloFont.style.transition = "0.9s";
+    var listaColunaTituloFont = window[1][1][0][0].document.querySelectorAll(".listaColunaTituloFont");
+        listaColunaTituloFont.forEach(listaColunaTituloFont => {
+            listaColunaTituloFont.style.color = "#E8E8E8";
+            listaColunaTituloFont.style.transition = "0.9s";
         });
     //CAMPO ITENS RECEBIDOS
     var itens_1 = window[1][1][0][0].document.querySelectorAll("body")[0];
@@ -39,10 +39,10 @@ function noturnoInicio(){
         itens_2.style.backgroundColor = "#000";
         itens_2.style.transition = "0.9s";
         
-    var fonte = window[1][0].document.querySelectorAll(".formularioLabelFont");
-        fonte.forEach(fonte => {
-            fonte.style.color = "#E8E8E8";
-            fonte.style.transition = "0.9s";
+    var formularioLabelFont = window[1][0].document.querySelectorAll(".formularioLabelFont");
+        formularioLabelFont.forEach(formularioLabelFont => {
+            formularioLabelFont.style.color = "#E8E8E8";
+            formularioLabelFont.style.transition = "0.9s";
         });
 		
 		//MUDANDO ICONE DO SIR
@@ -54,25 +54,25 @@ window.addEventListener("DOMContentLoaded", noturnoInicio);
 function noturno() {
     //CORES DE FUNFO DO SIR
     //CAMPOS DE TITULO
-    window[0].document.querySelectorAll("tbody")[0].style.background = "#1C1C1C";
+    window[0].document.querySelector("tbody").style.background = "#1C1C1C";
     //CAMPO DE IMPUT TABLE
-    var tagsir = ["body", "html", "td"];
-        for (var i = 0; i < 3; i++){
-            window[1][0].document.querySelectorAll(tagsir[i])[0].style.background = "#1C1C1C";
-        }
+	window[1][0].document.querySelectorAll('body')[0].style.background = "#1C1C1C";
+	window[1][0].document.querySelectorAll('html')[0].style.background = "#1C1C1C";
+	window[1][0].document.querySelectorAll('td')[0].style.background = "#1C1C1C";
+
     //TELA ROSA
     window[1][1][0][0].document.querySelectorAll(".menuNivel2TituloFont")[0].style.color = "#E8E8E8";
-        var texto = window[1][1][0][0].document.querySelectorAll(".listaColunaTituloFont");
-            texto.forEach(texto => {
-            texto.style.color = "#E8E8E8";
+        var listaColunaTituloFont = window[1][1][0][0].document.querySelectorAll(".listaColunaTituloFont");
+            listaColunaTituloFont.forEach(listaColunaTituloFont => {
+            listaColunaTituloFont.style.color = "#E8E8E8";
         });
     //CAMPO ITENS RECEBIDOS
     window[1][1][0][0].document.querySelectorAll("body")[0].style.background = "#000";
     window[1][1][0][1].document.querySelectorAll("body")[0].style.background = "#000";
 
-    var fonte = window[1][0].document.querySelectorAll(".formularioLabelFont");
-        fonte.forEach(fonte => {
-        fonte.style.color = "#E8E8E8";
+    var formularioLabelFont = window[1][0].document.querySelectorAll(".formularioLabelFont");
+        formularioLabelFont.forEach(formularioLabelFont => {
+        formularioLabelFont.style.color = "#E8E8E8";
     });
 
 }
@@ -88,3 +88,4 @@ var exibir = window[1][0].document.getElementsByClassName('formulariobutton')['c
         atualizar = setInterval(() => {noturno();}, 800);			
     });
 }
+
