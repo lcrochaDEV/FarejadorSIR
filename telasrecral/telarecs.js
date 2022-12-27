@@ -26,11 +26,12 @@ function rec(){
 		window[2].document.querySelector('[data-recbtn]').style.fontSize = '15px';
 		window[2].document.querySelector('[data-recbtn]').style.margin  = '1px';
 		window[2].document.querySelector('[data-recbtn]').style.padding  = '3px 6px';
-
+		
 	let btncopy = window[2].document.querySelector('[data-recbtn]');
 	btncopy.addEventListener('click', function(event) {
 		//Alteração em oaginas do SIR
 		let rec = window[1].document.querySelectorAll(".formularioTextFont > b")[0].innerText; //REC
+		let designacao = window[1].document.querySelectorAll(".formularioTextFont > b")[4].innerText; //DESIGNAÇÃO
 		var sla = window[1].document.querySelectorAll(".formularioTextFont > b")[2].innerText; //SLA
 		var emp = window[1].document.getElementsByTagName("input")[9].value; //NOME EMPRESA
 		var cliente = window[1].document.getElementsByTagName("input")[10].value; //NOME CLIENTE
@@ -50,8 +51,8 @@ function rec(){
 		window.addEventListener("beforeunload", (event) =>{window.popup.close()})
 	var popup = window.open('about:blank',`${rec}`,'width=700, height=300, scrolling=auto, top=0, left=0');
 		popup.document.write(`<textarea id="acionamentoTxt" value="" rows="14" cols="70">OBSERVAÇÕES:\nNOME DA EMPRESA: ${emp}\nCLIENTE/CONTATO: ${cliente} ${tel}\nHORÁRIO DE EXPEDIENTE:\nPRAZO DE SLA: ${sla}H\nREC REINCIDENTE: ${rein()}\nACESSO/MARCA/MODELO:\nTRANSMISSÃO/FACILIDADES:</textarea>`); 
-
 		popup.document.title = `${rec.substr(0, 18)}`;
+		popup.document.write(`<br><br><a href="http://10.100.1.30:8080/FichaTecnica/adaptadorSIRFT?designacao=${designacao}&descr_tratamento=INTERNET" target="_blank">Ficha Técnica</a>`);
 		//********************************************//
 	});
 }	
