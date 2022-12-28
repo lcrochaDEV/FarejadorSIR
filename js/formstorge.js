@@ -99,7 +99,7 @@ function printCadastro(itens){
 //DELETA ELEMENTO DE LOCALSTORG
 function deletar(){
 	//NOVO DELETE
-	let deletar = document.querySelectorAll('[data-dataCfs]');
+	let deletar = document.querySelectorAll('[data-delete]');
 		deletar.forEach(deletar => {
 			deletar.addEventListener("click", (event) => {       
 				console.log(event);
